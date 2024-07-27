@@ -44,7 +44,7 @@ export default function Footer() {
                             key={link.id}
                             target="_blank"
                             rel="noreferrer"
-                            className='shadow text-[18px] rounded-full size-[35px] cursor-pointer flex items-center justify-center text-red-600 border border-solid border-red-600'
+                            className="shadow text-[18px] rounded-full size-[35px] cursor-pointer flex items-center justify-center text-red-600 border border-solid border-red-600"
                             onClick={link.onclick}
                         >
                             {link.icon}
@@ -53,12 +53,12 @@ export default function Footer() {
 
                     {on && (
                         <div className="shadow border border-red-600 flex items-center px-[5px] rounded-md transition-all duration-500">
-                            <p className='text-red-600 text-[15px]'>thaqi1</p>
+                            <p className="text-red-600 text-[15px]">thaqi1</p>
                         </div>
                     )}
                 </div> 
                 <a href="#home" className="shadow absolute right-5 top-[60px] flex justify-center items-center rounded-full cursor-pointer size-[45px] border border-red-600">
-                    <FaArrowUp className='text-red-600 text-[25px]' />
+                    <FaArrowUp className="text-red-600 text-[25px]" />
                 </a>
                 <div className="mt-[10px] flex flex-col items-center leading-4">
                     <p className='text-[11px] text-red-600'>&copy; Copyright 2024 All Right Reserved</p>
