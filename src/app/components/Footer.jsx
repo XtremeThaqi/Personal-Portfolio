@@ -22,7 +22,7 @@ export default function Footer() {
         },
         {   id: 3,
             icon: <FaLinkedinIn />,
-            href: 'https://www.linkedin.com/in/erblin-thaqi-4989a7307',
+            href: 'https://www.linkedin.com/in/erblinthaqi',
         },
         {   id: 4,
             icon: <FaDiscord />,
