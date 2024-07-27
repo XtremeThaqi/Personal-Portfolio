@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { FaGithub, FaFacebookF, FaDiscord, FaLinkedinIn, } from "react-icons/fa";
+import { FaGithub, FaFacebookF, FaDiscord, FaLinkedinIn } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
 
 export default function Footer() {
@@ -31,11 +31,10 @@ export default function Footer() {
     ];
 
     return (
-
         <div className="w-full bg-zinc-950">
             <div className="relative px-[30px] pt-[30px] pb-[10px]">
                 <div className="mb-[10px]">
-                    <h2 className='text-red-600 text-[25px] font-bold'>Erblin's Website</h2>
+                    <h2 className="text-red-600 text-[25px] font-bold">Erblin&apos;s Website</h2>
                 </div> 
                 <div className="flex gap-3">
                     {socialLinks.map((link) => (
@@ -65,7 +64,6 @@ export default function Footer() {
                     <p className="text-[11px] text-red-600">By || <span className="text-white hover:text-red-600 transition-colors ease-linear"><a href="/">Erblin Thaqi</a></span> ||</p>
                 </div>
             </div> 
-        </div> 
-
+        </div>
     )
 }
