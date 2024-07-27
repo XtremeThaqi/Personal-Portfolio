@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* scroll-bar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: red;
+}
+
+/* ↓ everything here is for skills section! ↓ */
+.card {
+  @apply relative flex items-center mr-[20px] rounded-[5px] border border-red-600 p-2 mb-5 gap-5 shadow
+}
+
+.card-primary {
+  @apply w-[220%] mr-[-200px] flex-row-reverse
+}
+
+.card-primary::before {
+  @apply right-[-11px] top-[10px] bg-red-600 w-[5px] h-[33px] rounded-full
+}
+
+.card-primary::after {
+  @apply right-[-13.5px] top-[0.5px] bg-red-600 w-[10px] h-[10px] rounded-full
+}
+
+.card-secondary {
+  @apply ml-[-210px] w-[220%]
+}
+
+.card-secondary::before {
+  @apply left-[-11px] top-[10px] bg-red-600 w-[5px] h-[33px] rounded-full
+}
+
+.card-secondary::after {
+  @apply left-[-13.5px] top-[0.5px] bg-red-600 w-[10px] h-[10px] rounded-full
+}
+
+@keyframes pulse1 {
+  50% {
+    opacity: .3;
+  }
+}
+
+.animate-pulse1 {
+  animation: pulse1 3000ms linear infinite;
+}
+
+@keyframes pulse2 {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse2 {
+  animation: pulse2 4000ms linear infinite;
+}
+
+/* ↑ everything here is for skills section! ↑ */
+
+/* shadow for icons and for contact buttons. */
+.shadow {
+  box-shadow: 0 0 10px rgba(255, 0, 0, .8),
+    inset 0 0 10px rgba(255, 0, 0, .5);
+}
+
+.shadow-2 {
+  box-shadow: 0 0 20px rgba(255, 0, 0, .8);
+}
