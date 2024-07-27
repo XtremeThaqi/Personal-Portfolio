@@ -69,7 +69,7 @@ export default function Contact() {
                 {successMessage && (
                     <div className="fixed top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] bg-white p-4 rounded-md text-center w-[300px]">
                         <h1 className="text-[19px] font-bold text-green-600 max-[450px]:text-[16px]">Your message has been successfully received.</h1>
-                        <p className="text-[17px] mt-2 text-gray-700 max-[450px]:text-[15px]">Don't worry <span className="block">I will get to you soon.</span></p>
+                        <p className="text-[17px] mt-2 text-gray-700 max-[450px]:text-[15px]">Don&apos;t worry <span className="block">I will get to you soon.</span></p>
                     </div>
                 )}
             </div>
