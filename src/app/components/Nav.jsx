@@ -56,10 +56,7 @@ export default function Nav() {
                 </div>
             </nav>
             {active && (
-                <div
-                    className="fixed inset-0 bg-black opacity-50 z-9"
-                    onClick={closeMenu}
-                ></div>
+                <div className="fixed inset-0 bg-black opacity-50 z-9" onClick={closeMenu}></div>
             )}
         </>
     )
