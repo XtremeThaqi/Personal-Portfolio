@@ -61,8 +61,8 @@ export default function Footer() {
                     <FaArrowUp className="text-red-600 text-[25px]" />
                 </a>
                 <div className="mt-[10px] flex flex-col items-center leading-4">
-                    <p className='text-[11px] text-red-600'>&copy; Copyright 2024 All Right Reserved</p>
-                    <p className='text-[11px] text-red-600'>By || <span className='text-white hover:text-red-600 transition-colors ease-linear'><a href="/">Erblin Thaqi</a></span> ||</p>
+                    <p className="text-[11px] text-red-600">&copy; Copyright 2024 All Right Reserved</p>
+                    <p className="text-[11px] text-red-600">By || <span className="text-white hover:text-red-600 transition-colors ease-linear"><a href="/">Erblin Thaqi</a></span> ||</p>
                 </div>
             </div> 
         </div> 
