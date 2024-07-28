@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { FaHtml5, FaReact } from "react-icons/fa";
+import { FaHtml5, FaReact, FaTools  } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill  } from "react-icons/ri";
 
 export default function With() {
@@ -8,9 +8,9 @@ export default function With() {
     <>
         <div className="relative overflow-hidden">
             <div className='flex flex-col items-center'>
-                <h1 className="text-3xl font-bold text-red-600 relative z-10">Build with:</h1>
-                <span className='text-red-600 mt-5 text-[35px] animate-bounce'>&darr;</span>
-                <div className="flex flex-wrap justify-center my-4">
+                <h1 className="text-[40px] font-bold text-red-600 relative z-10"><FaTools/></h1>
+                <span className='text-red-600 mt-5 text-[30px] animate-bounce'>&darr;</span>
+                <div className="flex flex-wrap justify-center my-4 border border-red-600 p-5 rounded-full">
                     <div className="content">
                         <FaHtml5 className="text-[30px] text-red-600 max-md:text-[25px]"/>
                     </div>
