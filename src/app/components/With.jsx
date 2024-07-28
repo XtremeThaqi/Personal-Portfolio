@@ -9,7 +9,7 @@ export default function With() {
         <div className="relative overflow-hidden">
             <div className='flex flex-col items-center'>
                 <h1 className="text-3xl font-bold text-red-600 relative z-10">Build with:</h1>
-                <span className='text-red-600 mt-5 text-[30px] animate-bounce'>&darr;</span>
+                <span className='text-red-600 mt-5 text-[35px] animate-bounce'>&darr;</span>
                 <div className="flex flex-wrap justify-center my-4">
                     <div className="content">
                         <FaHtml5 className="text-[30px] text-red-600 max-md:text-[25px]"/>
