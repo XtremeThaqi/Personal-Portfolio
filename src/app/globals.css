@@ -79,9 +79,16 @@ body {
 /* shadow for icons and for contact buttons. */
 .shadow {
   box-shadow: 0 0 10px rgba(255, 0, 0, .8),
-    inset 0 0 10px rgba(255, 0, 0, .5);
+              inset 0 0 10px rgba(255, 0, 0, .5);
 }
 
-.shadow-2 {
-  box-shadow: 0 0 20px rgba(255, 0, 0, .8);
+.shadow2 {
+  box-shadow: 0 0 30px rgba(255, 0, 0, .8),
+              inset 0 0 10px rgba(255, 0, 0, .6);
+}
+
+/* build with section */
+
+.content {
+  @apply flex items-center justify-center w-[60px] h-[60px] mx-5 shadow2 bg-transparent rounded-[20px/50px] border-2 border-red-600 hover:scale-[1.1] hover:rounded-[50px] duration-200 ease-linear max-md:size-[55px]
 }
