@@ -90,5 +90,5 @@ body {
 /* build with section */
 
 .content {
-  @apply flex items-center justify-center w-[60px] h-[60px] mx-5 shadow2 bg-transparent rounded-[20px/50px] border-2 border-red-600 hover:scale-[1.1] hover:rounded-[50px] duration-200 ease-linear max-md:size-[55px]
+  @apply flex items-center justify-center w-[60px] h-[60px] mx-5 shadow2 border-2 border-red-600 hover:scale-[1.1] transition-transform duration-300 ease-linear rounded-full max-md:size-[55px]
 }
