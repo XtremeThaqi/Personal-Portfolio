@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: red white;
 }
 
 body {
