@@ -35,16 +35,16 @@ export default function Home() {
     return (
         <>
             <div className="pt-[65px] h-auto flex justify-center align-middle" id="home">
-                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0] max-lg:mr-0">
+                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0] max-lg:mr-0 max-[400px]:ml-[20px]">
                     
                     <div className="m-auto">
-                        <h2 className='text-red-600 font-bold text-[50px] mb-[-10px] max-sm:text-[40px]'>Hello,</h2>
-                        <p className='font-bold text-[35px] text-white max-sm:text-[30px]'>My Name Is <span className='text-red-600'>Erblin Thaqi.</span></p>
+                        <h2 className='text-red-600 font-bold text-[50px] mb-[-10px] max-sm:text-[40px] max-[400px]:text-[37px]'>Hello,</h2>
+                        <p className='font-bold text-[35px] text-white max-sm:text-[30px] max-[400px]:text-[27px]'>My Name Is <span className='text-red-600'>Erblin Thaqi.</span></p>
                         <p className='text-white w-[370px] text-[14px] mt-[-2px] leading-[1.2] max-sm:text-[12px]'>I am a <span className='text-red-600'>Front-End Developer</span>, Good Knowledge In Some <span className='text-red-500'>Programming Languages.</span></p>
                     </div>
 
                     <div className="mt-[100px]">
-                        <a className="shadow-2 text-black bg-red-600 border-[1px] pt-[7px] pb-[7px] pl-[20px] pr-[20px] text-[17px] rounded-3xl cursor-pointe hover:bg-black hover:text-red-600 hover:border border-red-600 border-solid transition-all duration-300 ease-linear max-sm:text-[15px]" href="#contact"><button>Contact Me</button></a>
+                        <a className="shadow-2 text-black bg-red-600 border-[1px] pt-[7px] pb-[7px] pl-[20px] pr-[20px] text-[17px] rounded-3xl cursor-pointe hover:bg-black hover:text-red-600 hover:border border-red-600 border-solid transition-all duration-300 ease-linear max-sm:text-[15px] max-[400px]:text-[13px]" href="#contact"><button>Contact Me</button></a>
                     </div>
 
                     <div className="flex items-center h-[50px] mt-[110px]">
@@ -55,7 +55,7 @@ export default function Home() {
                                     key={link.id} 
                                     target="_blank" 
                                     rel="noreferrer"
-                                    className='shadow text-[20px] rounded-full w-[40px] h-[40px] pr-[.7px] cursor-pointer flex items-center justify-center text-red-600 border border-solid border-red-600' onClick={link.onclick}>
+                                    className='shadow text-[20px] rounded-full size-[40px] pr-[.7px] cursor-pointer flex items-center justify-center text-red-600 border border-solid border-red-600 max-sm:size-[35px] max-sm:text-[17px]' onClick={link.onclick}>
                                     {link.icon}
                                 </a>
                             ))}

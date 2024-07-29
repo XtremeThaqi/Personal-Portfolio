@@ -51,15 +51,15 @@ export default function Contact() {
                 <form onSubmit={onSubmit} method="POST">
                     <div className="relative w-full">
                         <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
-                        <input className="shadow2 mb-5 text-red-600 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
+                        <input className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
                     </div>
                     <div className="relative w-full">
                         <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
-                        <input className="mb-5 text-red-600 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
+                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
                     </div> 
                     <div className="relative">
                         <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-red-600"/>
-                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-none rounded-[5px] outline-none text-red-600 bg-transparent p-[10px] border border-red-600 placeholder:text-red-600 max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
+                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-red-600 placeholder:text-red-600 max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
                     </div> 
                     <div className="relative">
                         <FaPaperPlane className="absolute right-[15px] top-[15px] text-red-600"/>
