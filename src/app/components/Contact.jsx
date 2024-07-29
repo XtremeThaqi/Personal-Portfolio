@@ -50,20 +50,20 @@ export default function Contact() {
                 </div>
                 <form onSubmit={onSubmit} method="POST">
                     <div className="relative w-full">
-                        <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-white"/>
-                        <input className="mb-5 text-white text-[20px] outline-none bg-red-600 w-full py-[7px] px-[15px] rounded-[5px] border border-transparent placeholder:text-white" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
+                        <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
+                        <input className="shadow2 mb-5 text-red-600 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
                     </div>
                     <div className="relative w-full">
-                        <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-white"/>
-                        <input className="mb-5 text-white text-[20px] outline-none bg-red-600 w-full py-[7px] px-[15px] rounded-[5px] border border-transparent placeholder:text-white" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
+                        <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
+                        <input className="mb-5 text-red-600 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
                     </div> 
                     <div className="relative">
-                        <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-white"/>
-                        <textarea className="mb-[15px] text-[19px] w-[400px]  h-[220px] resize-none rounded-[5px] outline-none text-white bg-red-600 p-[10px] border border-transparent placeholder:text-white max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
+                        <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-red-600"/>
+                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-none rounded-[5px] outline-none text-red-600 bg-transparent p-[10px] border border-red-600 placeholder:text-red-600 max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
                     </div> 
                     <div className="relative">
-                        <FaPaperPlane className="absolute right-[15px] top-[15px] text-white"/>
-                        <button className="bg-red-600 w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-white border border-none">Send Message</button>
+                        <FaPaperPlane className="absolute right-[15px] top-[15px] text-red-600"/>
+                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-red-600 border border-red-600">Send Message</button>
                     </div>
                 </form>
                 {successMessage && (
