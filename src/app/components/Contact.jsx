@@ -45,7 +45,7 @@ export default function Contact() {
         <div className="w-full h-full px-0 py-[90px] overflow-hidden" id="contact">
             <div className="max-w-full flex flex-col items-center">
                 <div className="mb-[50px] text-center">
-                    <h2 className="text-[40px] text-red-600 font-bold">Contact Me</h2>
+                    <h2 className="text-[40px] text-red-600 font-bold underline">Contact Me</h2>
                     <p className="text-[14px] w-[320px] text-red-600">Contact me if u need any help on ur project. And i will get to you ASAP!</p>
                 </div>
                 <form onSubmit={onSubmit} method="POST">
