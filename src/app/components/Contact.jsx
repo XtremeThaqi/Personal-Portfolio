@@ -45,25 +45,25 @@ export default function Contact() {
         <div className="w-full h-full px-0 py-[90px] overflow-hidden" id="contact">
             <div className="max-w-full flex flex-col items-center">
                 <div className="mb-[50px] text-center">
-                    <h2 className="text-[40px] text-red-600 font-bold underline">Contact Me</h2>
-                    <p className="text-[14px] w-[320px] text-red-600">Contact me if u need any help on ur project. And i will get to you ASAP!</p>
+                    <h2 className="text-[40px] text-[#cf2525] font-bold underline">Contact Me</h2>
+                    <p className="text-[14px] w-[320px] text-[#cf2525]">Contact me if u need any help on ur project. And i will get to you ASAP!</p>
                 </div>
                 <form onSubmit={onSubmit} method="POST">
                     <div className="relative w-full">
-                        <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
-                        <input className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
+                        <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]"/>
+                        <input className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
                     </div>
                     <div className="relative w-full">
-                        <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-red-600"/>
-                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-red-600 placeholder:text-red-600" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
+                        <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]"/>
+                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
                     </div> 
                     <div className="relative">
-                        <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-red-600"/>
-                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-red-600 placeholder:text-red-600 max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
+                        <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]"/>
+                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
                     </div> 
                     <div className="relative">
-                        <FaPaperPlane className="absolute right-[15px] top-[15px] text-red-600"/>
-                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-red-600 border border-red-600">Send Message</button>
+                        <FaPaperPlane className="absolute right-[15px] top-[15px] text-[#cf2525]"/>
+                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-[#cf2525] border border-[#cf2525]">Send Message</button>
                     </div>
                 </form>
                 {successMessage && (
