@@ -66,7 +66,7 @@ body {
 }
 
 .animate-pulse1 {
-  animation: pulse1 3000ms linear infinite;
+  animation: pulse1 3s linear infinite;
 }
 
 @keyframes pulse2 {
