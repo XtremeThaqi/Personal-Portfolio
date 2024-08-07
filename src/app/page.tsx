@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Nav from './components/Nav';
 import Home from './components/Home';
 import About from './components/About';
@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 
 export default function Page() {
   return (
-    <div>
+    <>
       <Nav/>
       <Home/>
       <About/>
@@ -19,6 +19,6 @@ export default function Page() {
       <Contact/>
       <With/>
       <Footer/>
-    </div>
+    </>
   );
 }

@@ -36,7 +36,7 @@ body {
 }
 
 .card-primary {
-  @apply w-[220%] mr-[-200px] flex-row-reverse
+  @apply w-[220%] mr-[-200px] flex-row-reverse cursor-default
 }
 
 .card-primary::before {
@@ -48,7 +48,7 @@ body {
 }
 
 .card-secondary {
-  @apply ml-[-210px] w-[220%]
+  @apply w-[220%] ml-[-210px] cursor-default
 }
 
 .card-secondary::before {
@@ -57,26 +57,6 @@ body {
 
 .card-secondary::after {
   @apply left-[-13.5px] top-[0.5px] bg-[#cf2525] w-[10px] h-[10px] rounded-full
-}
-
-@keyframes pulse1 {
-  50% {
-    opacity: .3;
-  }
-}
-
-.animate-pulse1 {
-  animation: pulse1 3s linear infinite;
-}
-
-@keyframes pulse2 {
-  50% {
-    opacity: .5;
-  }
-}
-
-.animate-pulse2 {
-  animation: pulse2 4000ms linear infinite;
 }
 
 /* ↑ everything here is for skills section! ↑ */
