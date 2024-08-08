@@ -71,9 +71,3 @@ body {
   box-shadow: 0 0 30px rgba(255, 0, 0, .8),
               inset 0 0 10px rgba(255, 0, 0, .6);
 }
-
-/* build [WITH] section */
-
-.content {
-  @apply flex items-center justify-center w-[60px] h-[60px] mx-5 shadow2 border-2 border-[#cf2525] hover:scale-[1.1] transition-transform duration-300 ease-linear rounded-full max-md:size-[55px] max-[450px]:mx-2
-}
