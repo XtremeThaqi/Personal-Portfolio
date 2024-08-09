@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaTools } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill  } from "react-icons/ri";
+import { TbBrandFramerMotion } from "react-icons/tb";
 
 export default function With() {
     
@@ -14,7 +15,11 @@ export default function With() {
         {   id: 2,href: 'https://tailwindcss.com',
             icon: <RiTailwindCssFill />,
             target: '_blank'
-        }
+        },
+        {   id: 3, href: 'https://www.framer.com/motion/',
+            icon: <TbBrandFramerMotion />,
+            target: '_blank'
+        }       
     ]
 
     return (
