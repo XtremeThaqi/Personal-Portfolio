@@ -108,7 +108,7 @@ export default function Skills() {
             whileHover={{ scale: 1.05, duration: 1 }}
             className="card card-primary before:absolute after:absolute max-md:ml-[20px] max-md:w-[400px] max-sm:w-[300px] max-sm:ml-[30px]">
             <FaFigma className="text-[27px] text-[#cf2525]" />
-            <h2 className="text-gray-400 font-bold text-[16px] max-sm:text-[13px]">Figma (Basic)</h2>
+            <h2 className="text-gray-400 font-bold text-[16px] max-sm:text-[13px]">Figma (UI)</h2>
           </motion.div>
 
         </div>
