@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaFacebookF, FaDiscord, FaLinkedinIn } from "react-icons/fa";
 
 export default function Home() {
-
     const [on, setOn] = useState(false);
 
     // toggle for discord 
