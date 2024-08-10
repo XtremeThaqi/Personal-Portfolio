@@ -55,13 +55,13 @@ export default function Contact() {
                     <p className="text-[14px] w-[320px] text-[#cf2525]">Contact me if u need any help on ur project. And i will get to you ASAP!</p>
                 </motion.div>
 
-                <form onSubmit={onSubmit} method="POST">
+                <form onSubmit={onSubmit} method="POST" className="max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center max-[400px]:w-[300px]">
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="relative w-full">
-                        <FaUser className="absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
+                        <label htmlFor="text"><FaUser className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" /></label>
                         <input className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
                     </motion.div>
 
@@ -70,8 +70,8 @@ export default function Contact() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="relative w-full">
-                        <FaEnvelope className="absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
-                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="email" placeholder="Email" name='email' required autoComplete="email"></input>
+                        <label htmlFor="email"><FaEnvelope className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" /></label>
+                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="email" placeholder="Email" name='email' id="email" required autoComplete="email"></input>
                     </motion.div>
 
                     <motion.div
@@ -79,8 +79,8 @@ export default function Contact() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="relative">
-                        <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]" />
-                        <textarea className="shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px]" cols="40" rows="10" minLength={5} name='message' placeholder="Message..." required autoComplete="off"></textarea>
+                        <label htmlFor="message"><FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]" /></label>
+                        <textarea className="cursor-text shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]" type="text" cols="40" rows="10" minLength={5} name='message' id="message" placeholder="Message..." required autoComplete="off"></textarea>
                     </motion.div>
 
                     <motion.div
@@ -88,8 +88,8 @@ export default function Contact() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="relative">
-                        <FaPaperPlane className="absolute right-[15px] top-[15px] text-[#cf2525]" />
-                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-[#cf2525] border border-[#cf2525]">Send Message</button>
+                        <label htmlFor="submit"><FaPaperPlane className="cursor-pointer absolute right-[15px] top-[15px] text-[#cf2525]" /></label>
+                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-[#cf2525] border border-[#cf2525] coursor-pointer max-[400px]:w-[300px]" id="submit">Send Message</button>
                     </motion.div>
 
                 </form>

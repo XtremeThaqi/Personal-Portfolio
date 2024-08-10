@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function About() {
     return (
         <>
-            <div className="flex items-center justify-center h-[100%] m-auto pt-[140px] pb-[100px] pl-0 pr-0" id="about">
+            <div className="flex items-center justify-center h-[100%] m-auto pt-[140px] pb-[100px] pl-0 pr-0 overflow-hidden" id="about">
                 <div className="m-auto">
                     <div className="flex flex-col justify-center max-[550px]:px-5 p-[10px]">
                         <motion.div

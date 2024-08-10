@@ -8,7 +8,7 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 export default function Skills() {
 
   return (
-    <div className="w-[100%] h-[100%] pl-[0] pr-[0] pb-[100px] pt-[80px]" id="skills">
+    <div className="w-[100%] h-[100%] pl-[0] pr-[0] pb-[100px] pt-[80px] overflow-hidden" id="skills">
       <div className="w-[100%] h-auto flex flex-col items-center">
 
         <motion.div

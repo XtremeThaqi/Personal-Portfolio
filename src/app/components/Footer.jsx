@@ -60,7 +60,7 @@ export default function Footer() {
                         </div>
                     )}
                 </div>
-                <a href="#home" className="shadow absolute right-5 top-[60px] flex justify-center items-center rounded-full cursor-pointer size-[45px] border border-[#cf2525]">
+                <a href="#home" className="shadow absolute right-5 top-[70px] flex justify-center items-center rounded-full cursor-pointer size-[45px] border border-[#cf2525]">
                     <FaArrowUp className="text-[#cf2525] text-[25px]" />
                 </a>
                 <div className="mt-[10px] flex flex-col items-center leading-4">

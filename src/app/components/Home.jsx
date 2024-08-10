@@ -34,7 +34,7 @@ export default function Home() {
     return (
         <>
             <div className="pt-[65px] h-auto flex justify-center align-middle" id="home">
-                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0] max-lg:mr-0 max-[400px]:ml-[20px]">
+                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0] max-lg:mr-0 max-[400px]:ml-[40px]">
 
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
