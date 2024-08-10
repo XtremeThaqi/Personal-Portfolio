@@ -12,19 +12,23 @@ export default function Footer() {
 
     // social links
     const socialLinks = [
-        {   id: 1,
+        {
+            id: 1,
             icon: <FaGithub />,
             href: 'https://github.com/XtremeThaqi',
         },
-        {   id: 2,
+        {
+            id: 2,
             icon: <FaFacebookF />,
             href: 'https://www.facebook.com/profile.php?id=61550534936023',
         },
-        {   id: 3,
+        {
+            id: 3,
             icon: <FaLinkedinIn />,
             href: 'https://www.linkedin.com/in/erblinthaqi',
         },
-        {   id: 4,
+        {
+            id: 4,
             icon: <FaDiscord />,
             onclick: toggle
         }
@@ -35,7 +39,7 @@ export default function Footer() {
             <div className="relative px-[30px] pt-[30px] pb-[10px]">
                 <div className="mb-[10px]">
                     <h2 className="text-[#cf2525] text-[25px] font-bold">Erblin&apos;s Website</h2>
-                </div> 
+                </div>
                 <div className="flex gap-3">
                     {socialLinks.map((link) => (
                         <a
@@ -55,7 +59,7 @@ export default function Footer() {
                             <p className="text-[#cf2525] text-[15px]">thaqi1</p>
                         </div>
                     )}
-                </div> 
+                </div>
                 <a href="#home" className="shadow absolute right-5 top-[60px] flex justify-center items-center rounded-full cursor-pointer size-[45px] border border-[#cf2525]">
                     <FaArrowUp className="text-[#cf2525] text-[25px]" />
                 </a>
@@ -63,7 +67,7 @@ export default function Footer() {
                     <p className="text-[11px] text-[#cf2525]">&copy; Copyright 2024 All Right Reserved</p>
                     <p className="text-[11px] text-[#cf2525]">By || <span className="text-white hover:text-[#cf2525] transition-colors ease-linear"><a href="/">Erblin Thaqi</a></span> ||</p>
                 </div>
-            </div> 
+            </div>
         </div>
     )
 }

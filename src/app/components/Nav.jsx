@@ -30,10 +30,10 @@ export default function Nav() {
         <>
             <nav className="fixed top-0 w-[100%] p-[20px] border-b-red-600 z-10 border border-l-black border-t-black border-r-black">
                 <motion.div
-                 initial={{ opacity: 0, x: -50 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 transition={{ duration: 0.5 }}
-                 className="relative flex justify-around flex-row-reverse items-center">
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative flex justify-around flex-row-reverse items-center">
                     <div onClick={toggle} className="text-red-600 text-[1.8rem] cursor-pointer">
                         <FaBars />
                     </div>
@@ -59,7 +59,7 @@ export default function Nav() {
                         )}
                     </ul>
                 </motion.div>
-                
+
             </nav>
             {active && (
                 <div className="fixed inset-0 bg-black opacity-50 z-9"

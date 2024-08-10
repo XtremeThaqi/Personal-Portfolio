@@ -79,8 +79,6 @@ export default function Home() {
                                 initial={{ opacity: 1, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: .5 }}
-                                exit={{ opacity: 0, x: -20, duration: .5, delay: .5, ease: 'easeIn' }}
-                                whileHover={{ scale: 1.05, duration: 1 }}
                                 className="border border-solid border-[#cf2525] rounded-2xl ml-3 p-[5px] shadow">
                                 <p className='text-white max-[500px]:text-[14px]'>My Discord:</p>
                                 <p className='text-center text-[#cf2525] mt-[-3px] max-[500px]:text-[16px]'>thaqi1</p>
@@ -88,9 +86,11 @@ export default function Home() {
                         )}
                     </motion.div>
 
+
                 </div>
             </div>
         </>
     );
+
 
 }
