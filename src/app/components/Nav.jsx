@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaBars } from 'react-icons/fa';
@@ -42,9 +43,20 @@ export default function Nav() {
                             <a className="text-red-600 text-[20px]" href="/">Erblin.</a>
                         </div>
                         {active && (
-                            <div className="absolute -top-5 -right-6 w-64 h-screen bg-red-600 text-white p-6 shadow">
+                            <motion.div
+                                initial={{ opacity: 0, x: 50 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5, ease: 'linear' }}
+                                className="absolute -top-5 -right-6 w-64 h-screen bg-red-600 text-white p-6 shadow">
                                 <div className="flex justify-end mb-5">
-                                    <HiXMark className="text-2xl cursor-pointer" onClick={closeMenu} />
+                                    <motion.div
+                                        whileTap={{ scale: 0.9 }}
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.1 }}
+                                    >
+                                        <HiXMark className="text-2xl cursor-pointer" onClick={closeMenu} />
+                                    </motion.div>
                                 </div>
                                 {navData.map((item) => (
                                     <li key={item.id} className="cursor-pointer mb-5">
@@ -55,16 +67,20 @@ export default function Nav() {
                                         </a>
                                     </li>
                                 ))}
-                            </div>
+                            </motion.div>
                         )}
                     </ul>
                 </motion.div>
 
             </nav>
             {active && (
-                <div className="fixed inset-0 bg-black opacity-50 z-9"
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: .5 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut', ...(active && { delay: 0.1 }) }}
+                    className="fixed inset-0 bg-black opacity-50 z-9"
                     onClick={closeMenu}>
-                </div>
+                </motion.div>
             )}
         </>
     )
