@@ -33,8 +33,8 @@ export default function Home() {
 
     return (
         <>
-            <div className="pt-[65px] h-auto flex justify-center align-middle" id="home">
-                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0] max-lg:mr-0 max-[400px]:ml-[40px]">
+            <div className="pt-[65px] h-auto flex justify-center" id="home">
+                <div className="flex flex-col mt-[130px] mr-[230px] mb-[50px] ml-[0px] max-lg:mr-0 max-[400px]:ml-[40px]">
 
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -70,19 +70,20 @@ export default function Home() {
                                     {link.icon}
                                 </a>
                             ))}
-                        </div>
-
-                        {/* discord toggle */}
-                        {on && (
+                            {on && (
                             <motion.div
                                 initial={{ opacity: 1, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: .5 }}
-                                className="border border-solid border-[#cf2525] rounded-2xl ml-3 p-[5px] shadow">
+                                className="border border-solid border-[#cf2525] rounded-2xl p-[5px] shadow">
                                 <p className='text-white max-[500px]:text-[14px]'>My Discord:</p>
                                 <p className='text-center text-[#cf2525] mt-[-3px] max-[500px]:text-[16px]'>thaqi1</p>
                             </motion.div>
                         )}
+                        </div>
+
+                        {/* discord toggle */}
+                        
                     </motion.div>
 
 
