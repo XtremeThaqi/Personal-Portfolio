@@ -28,7 +28,6 @@ export default function Skills() {
         </motion.div>
 
         <div className="w-auto h-auto">
-
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,8 +109,8 @@ export default function Skills() {
             <FaFigma className="text-[27px] text-[#cf2525]" />
             <h2 className="text-gray-400 font-bold text-[16px] max-sm:text-[13px]">Figma (UI)</h2>
           </motion.div>
-
         </div>
+
       </div>
     </div>
 

@@ -43,7 +43,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="w-full h-full px-0 py-[90px] overflow-hidden" id="contact">
+        <div className="w-full h-full px-0 py-[100px] overflow-hidden" id="contact">
             <div className="max-w-full flex flex-col items-center">
 
                 <motion.div
