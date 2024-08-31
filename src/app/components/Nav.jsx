@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+
 import { FaBars } from 'react-icons/fa';
 import { HiXMark } from 'react-icons/hi2';
 
@@ -9,7 +10,7 @@ export default function Nav() {
     const [active, setActive] = useState(false);
 
     // toggle to open menu
-    const toggle = () => {
+    const openMenu = () => {
         setActive(!active);
     }
 
@@ -18,7 +19,7 @@ export default function Nav() {
         setActive(false);
     }
 
-    // li data
+    // data
     const navData = [
         { id: 1, name: 'Home', href: '#home' },
         { id: 2, name: 'About', href: '#about' },
@@ -35,12 +36,12 @@ export default function Nav() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                     className="relative flex justify-around flex-row-reverse items-center">
-                    <div onClick={toggle} className="text-red-600 text-[1.8rem] cursor-pointer">
+                    <div onClick={openMenu} className="text-red-600 text-[1.8rem] cursor-pointer">
                         <FaBars />
                     </div>
                     <ul>
                         <div>
-                            <a className="text-red-600 text-[20px]" href="/">Erblin.</a>
+                            <a className="text-red-600 text-[1.4rem]" href="/">Erblin.</a>
                         </div>
                         {active && (
                             <motion.div
@@ -77,7 +78,7 @@ export default function Nav() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: .5 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut', ...(active && { delay: 0.1 }) }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                     className="fixed inset-0 bg-black opacity-50 z-9"
                     onClick={closeMenu}>
                 </motion.div>

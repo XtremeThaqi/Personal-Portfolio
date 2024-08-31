@@ -8,6 +8,61 @@ export default function Contact() {
     const [submitted, setSubmitted] = useState(false);
     const [successMessage, setSuccessMessage] = useState(false);
 
+    // state for validation
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    // error state
+    const [nameError, setNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [messageError, setMessageError] = useState(false);
+
+    // getting the event from the name email etc
+    const onChange = (e) => {
+        if (e.target.name === "name") {
+            setNameError(false);
+            setName(e.target.value);
+        } else if (e.target.name === "email") {
+            setEmailError(false);
+            setEmail(e.target.value);
+        } else if (e.target.name === "message") {
+            setMessageError(false);
+            setMessage(e.target.value);
+        } else {
+            console.log("error");
+        }
+    };
+
+    // name validation
+    const nameValidation = () => {
+        if (name === "" || !name.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/)) {
+            setNameError(true);
+        } else {
+            setNameError(false);
+        }
+    };
+
+    // email validation
+    const emailValidation = () => {
+        if (email === "" || !email.match(/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/)) {
+            setEmailError(true);
+        } else {
+            setEmailError(false);
+        }
+
+    };
+
+    // message validation
+    const messageValidation = () => {
+        if (message === "") {
+            setMessageError(true);
+        } else {
+            setMessageError(false);
+        }
+    };
+
+    // submit form
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -59,18 +114,29 @@ export default function Contact() {
                     </p>
                 </motion.div>
 
-                <form onSubmit={onSubmit} method="POST" className="max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center max-[400px]:w-[300px]">
+                <form onSubmit={onSubmit} method="POST" className="gap-1 max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center max-[400px]:w-[300px]">
+
+                    {/* name */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="relative w-full">
+                        className="relative w-full"
+                    >
                         <label htmlFor="text">
                             <FaUser className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
                         </label>
-                        <input className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="text" placeholder="Name" name='name' id="text" maxLength={25} required autoComplete="name"></input>
+                        <input
+                            className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]"
+                            type="text" placeholder="Name" name='name'
+                            id="text" required autoComplete="name"
+                            onChange={(e) => { onChange(e); nameValidation(); }}
+                            value={name} maxLength="30" minLength="3"
+                        ></input>
+                         {nameError && <p className="-mt-5 text-[14px] text-[#cf2525]">Please enter a valid name!</p>}
                     </motion.div>
 
+                    {/* email */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -79,9 +145,17 @@ export default function Contact() {
                         <label htmlFor="email">
                             <FaEnvelope className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
                         </label>
-                        <input className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]" type="email" placeholder="Email" name='email' id="email" required autoComplete="email"></input>
+                        <input
+                            className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]"
+                            type="email" placeholder="Email" name='email'
+                            id="email" autoComplete="email" required
+                            onChange={(e) => { onChange(e); emailValidation(); }}
+                            value={email} maxLength="30" minLength="3"
+                        ></input>
+                         {emailError && <p className="-mt-5 text-[14px] text-[#cf2525]">Please enter a valid email!</p>}
                     </motion.div>
 
+                    {/* Message */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -90,9 +164,17 @@ export default function Contact() {
                         <label htmlFor="message">
                             <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]" />
                         </label>
-                        <textarea className="cursor-text shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]" type="text" cols="40" rows="10" minLength={5} name='message' id="message" placeholder="Message..." required autoComplete="off"></textarea>
+                        <textarea
+                            className="cursor-text shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]"
+                            type="text" cols="40" rows="10" minLength={5}
+                            name='message' id="message" placeholder="Message..."
+                            autoComplete="off" required
+                            onChange={(e) => { onChange(e); messageValidation(); }}
+                        ></textarea>
+                        {messageError && <p className="text-[14px] -mt-4 text-[#cf2525]">Please enter a valid message!</p>}
                     </motion.div>
 
+                    {/* submit button */}
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -108,6 +190,7 @@ export default function Contact() {
 
                 </form>
 
+                {/* Message when the form is submitted */}
                 {successMessage && (
                     <div className="fixed top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] bg-white p-4 rounded-md text-center w-[300px]">
                         <h1 className="text-[19px] font-bold text-green-600 max-[450px]:text-[16px]">
