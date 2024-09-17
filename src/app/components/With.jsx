@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaTools } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
-import { TbBrandFramerMotion } from "react-icons/tb";
+import { TbBounceLeft, TbBounceLeftFilled, TbBrandFramerMotion } from "react-icons/tb";
 
 export default function With() {
 
@@ -37,8 +37,13 @@ export default function With() {
                         <FaTools className='text-[40px] font-bold text-[#cf2525] relative z-10' />
                         <span className='text-[#cf2525] mt-5 text-[22px]'>This website is made with:</span>
                     </motion.div>
-                    <div className="shadow2 flex flex-wrap justify-center my-4 border border-red-600 p-5 rounded-md">
-                        {iconsData.map((item) => (
+                    <motion.div
+                        initial={{ opacity: 0, scale: .5 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: .5 }}
+                        className="shadow2 flex flex-wrap justify-center my-4 border border-red-600 p-5 rounded-md"
+                    >
+                        {iconsData.map(item => (
                             <motion.a
                                 initial={{ opacity: 0, scale: .5 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -50,7 +55,7 @@ export default function With() {
                                 {item.icon}
                             </motion.a>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </>

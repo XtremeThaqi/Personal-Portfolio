@@ -30,7 +30,7 @@ export default function Nav() {
 
     return (
         <>
-            <nav className="fixed top-0 w-[100%] p-[20px] border-b-red-600 z-10 border border-l-black border-t-black border-r-black">
+            <nav className="fixed top-0 w-[100%] p-[20px] border-b-red-600 z-20 border border-l-black border-t-black border-r-black">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -47,9 +47,9 @@ export default function Nav() {
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, ease: 'linear' }}
+                                transition={{ duration: 0.5, ease: 'linear'}}
                                 className="absolute -top-5 -right-6 w-64 h-screen bg-red-600 text-white p-6 shadow">
-                                <div className="flex justify-end mb-5">
+                                <div className="flex justify-end items-center mb-5">
                                     <motion.div
                                         whileTap={{ scale: 0.9 }}
                                         initial={{ opacity: 0, x: -50 }}
@@ -79,7 +79,7 @@ export default function Nav() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: .5 }}
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="fixed inset-0 bg-black opacity-50 z-9"
+                    className="fixed inset-0 bg-black opacity-50 z-10"
                     onClick={closeMenu}>
                 </motion.div>
             )}

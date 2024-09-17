@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { FaGithub, FaFacebookF, FaDiscord, FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaFacebookF, FaDiscord, FaLinkedinIn, } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa6";
 
 export default function Footer() {
@@ -60,8 +60,8 @@ export default function Footer() {
                         </div>
                     )}
                 </div>
-                <a href="#home" className="shadow absolute right-5 top-[70px] flex justify-center items-center rounded-full cursor-pointer size-[45px] border border-[#cf2525]">
-                    <FaArrowUp className="text-[#cf2525] text-[25px]" />
+                <a href="#home" className="shadow absolute right-5 top-[70px] flex justify-center items-center rounded-full cursor-pointer size-12 border border-[#cf2525] hover:scale-110 transition-all duration-300">
+                    <FaArrowUp className="text-[#cf2525] text-[2rem]" />
                 </a>
                 <div className="mt-[10px] flex flex-col items-center leading-4">
                     <p className="text-[11px] text-[#cf2525]">&copy; Copyright 2024 All Right Reserved</p>
