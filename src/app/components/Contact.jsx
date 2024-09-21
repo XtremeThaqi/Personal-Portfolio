@@ -167,7 +167,7 @@ export default function Contact() {
                             <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]" />
                         </label>
                         <textarea
-                            className="mb-5 text-zinc-300 text-[20px] w-[400px] h-[220px] outline-none bg-transparent py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]"
+                            className="mb-5 text-zinc-300 text-[20px] w-[400px] h-[220px] outline-none bg-transparent py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]"
                             type="text" cols="40" rows="10"
                             name='message' id="message" placeholder="Message..."
                             autoComplete="off"
