@@ -14,8 +14,8 @@ export default function Page() {
       <Nav/>
       <Home/>
       <About/>
-      <Projects/>
       <Skills/>
+      <Projects/>
       <Contact/>
       <With/>
       <Footer/>
