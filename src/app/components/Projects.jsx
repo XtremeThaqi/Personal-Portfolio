@@ -90,7 +90,7 @@ export default function Projects() {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: .5 }}
                         >
-                            Our ToDo app helps users manage their daily tasks and goals in a simple and organized way. Whether it's for personal productivity or team collaboration, this app keeps your tasks clear and on track.
+                            Our ToDo app helps users manage their daily tasks and goals in a simple and organized way. Whether it&apos;s for personal productivity or team collaboration, this app keeps your tasks clear and on track.
                         </motion.p>
                     </div>
                     <div className="w-[100%] h-[100%] relative">
