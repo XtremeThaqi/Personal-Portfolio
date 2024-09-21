@@ -2,7 +2,7 @@
 import Nav from './components/Nav';
 import Home from './components/Home';
 import About from './components/About';
-// import Projects from './components/Projects'; projects soon will be added
+import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Skills from './components/Skills';
 import With from './components/With'
@@ -14,8 +14,8 @@ export default function Page() {
       <Nav/>
       <Home/>
       <About/>
+      <Projects/>
       <Skills/>
-      {/* <Projects/> */}
       <Contact/>
       <With/>
       <Footer/>
