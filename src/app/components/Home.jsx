@@ -83,7 +83,7 @@ export default function Home() {
                             {socialLinks.map((link) => (
                                 <motion.a
                                     key={link.id}
-                                    initial={{ opacity: 0, x: -50 }}
+                                    initial={{ opacity: 0, x: 50 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.5 }}
                                     href={link.href}
