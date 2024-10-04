@@ -67,7 +67,7 @@ export default function Projects() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: .5 }}
                         >
-                            <a href="https://blini.netlify.app" className="text-black bg-[#cf2525] border-[2px] py-1 text-[15px] px-5 rounded-3xl cursor-pointer hover:bg-black hover:text-[#cf2525] hover:border-2 border-[#cf2525] transition-all duration-300 ease-linear" target="_blank">See Live Demo</a>
+                            <a href="https://blini.netlify.app" className="text-black bg-[#cf2525] border-[2px] py-1.5 text-[15px] px-5 rounded-3xl cursor-pointer hover:bg-black hover:text-[#cf2525] hover:border-2 border-[#cf2525] transition-all duration-300 ease-linear" target="_blank">See Live Demo</a>
                         </motion.div>
 
                     </div>
@@ -99,7 +99,7 @@ export default function Projects() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: .5 }}
                         >
-                            <a href="https://quicktaskss.netlify.app" className="text-black bg-[#cf2525] border-[2px] py-1 text-[15px] px-5 rounded-3xl cursor-pointer hover:bg-black hover:text-[#cf2525] hover:border-2 border-[#cf2525] transition-all duration-300 ease-linear" target="_blank">See Live Demo</a>
+                            <a href="https://quicktaskss.netlify.app" className="text-black bg-[#cf2525] border-[2px] py-1.5 text-[15px] px-5 rounded-3xl cursor-pointer hover:bg-black hover:text-[#cf2525] hover:border-2 border-[#cf2525] transition-all duration-300 ease-linear" target="_blank">See Live Demo</a>
                         </motion.div>
                     </div>
                     <div className="w-[100%] h-[100%] relative">
