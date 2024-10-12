@@ -29,7 +29,7 @@ export default function Projects() {
                             initial={{ opacity: 0, scale: .5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: .5 }}>
-                            <Image src={img1} alt="Restaurant" className="h-[400px] pointer-events-none rounded-md max-[950px]:h-[400px] max-md:h-[350px] max-sm:w-[500px] max-sm:h-[300px]" />
+                            <Image src={img1} alt="Restaurant" className="h-[400px] pointer-events-none rounded-md object-fill" sizes='(max-width: 768px) 100vw, 500px' />
                         </motion.div>
 
                         <motion.div
@@ -51,7 +51,7 @@ export default function Projects() {
                         >
                             Restaurant App
                         </motion.h2>
-                        
+
                         <motion.p
                             className="text-[1.2rem] leading-8 max-md:text-[1rem]"
                             initial={{ opacity: 0, x: 100 }}
@@ -77,7 +77,7 @@ export default function Projects() {
                 <div className="grid grid-cols-2 justify-center items-center gap-2 max-[950px]:flex max-[950px]:flex-col">
                     <div className="w-[100%] h-[100%] p-5 text-[#cf2525] relative max-sm:p-2">
                         <motion.h2
-                            className="font-bold text-[2rem] max-md:text-[1.5rem]"
+                            className="font-bold text-[2rem] text-right max-md:text-[1.5rem]"
                             initial={{ opacity: 0, x: 100 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: .5 }}
@@ -85,7 +85,7 @@ export default function Projects() {
                             ToDo App
                         </motion.h2>
                         <motion.p
-                            className="text-[1.2rem] leading-8 max-md:text-[1rem]"
+                            className="text-[1.2rem] text-right leading-8 max-md:text-[1rem]"
                             initial={{ opacity: 0, x: -100 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: .5 }}
@@ -94,7 +94,7 @@ export default function Projects() {
                         </motion.p>
 
                         <motion.div
-                            className="mt-5"
+                            className="mt-5 text-right"
                             initial={{ opacity: 0, scale: .5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: .5 }}
@@ -108,7 +108,7 @@ export default function Projects() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: .5 }}
                         >
-                            <Image src={img2} alt="ToDo App" className="h-[400px] pointer-events-none rounded-md max-md:h-[350px] max-sm:w-[500px] max-sm:h-[300px]" />
+                            <Image src={img2} alt="ToDo App" className="h-[400px] pointer-events-none rounded-md object-fill" sizes='(max-width: 768px) 100vw, 500px' />
                         </motion.div>
 
                         <motion.div

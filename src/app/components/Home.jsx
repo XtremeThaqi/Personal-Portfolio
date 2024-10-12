@@ -44,7 +44,7 @@ export default function Home() {
                             transition={{ duration: 0.5 }}
                             className='text-[#cf2525] font-bold text-[50px] mb-[-10px] max-sm:text-[40px] max-[400px]:text-[37px]'
                         >
-                            hello<span className='text-5xl max-sm:text-4xl'>👋</span>,
+                            Hello<span className='text-5xl max-sm:text-4xl'>👋</span>,
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, x: -40 }}
