@@ -40,14 +40,16 @@ export default function Nav() {
                         <FaBars />
                     </div>
                     <ul>
-                        <div>
+
+                        <li>
                             <a className="text-red-600 text-[1.4rem]" href="/">Erblin.</a>
-                        </div>
+                        </li>
+
                         {active && (
                             <motion.div
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, ease: 'linear'}}
+                                transition={{ duration: 0.5, ease: 'linear' }}
                                 className="absolute -top-5 -right-6 w-64 h-screen bg-red-600 text-white p-6 shadow">
                                 <div className="flex justify-end items-center mb-5">
                                     <motion.div
