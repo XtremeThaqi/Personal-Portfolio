@@ -48,7 +48,7 @@ export default function Home() {
     ];
 
     return (
-        <section className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center px-4" id="home">
+        <section className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center px-4 max-sm:mt-4" id="home">
             <div className="max-w-6xl w-full mx-auto py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Column - Content */}
