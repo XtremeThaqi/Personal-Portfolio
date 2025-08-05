@@ -4,10 +4,13 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaDiscord } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoCopyOutline } from "react-icons/io5";
+import Image from 'next/image';
 
 export default function Home() {
     const [discordVisible, setDiscordVisible] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [showQR, setShowQR] = useState(false);
+    const toggleQR = () => setShowQR(prev => !prev);
 
     const toggleDiscord = () => {
         setDiscordVisible(!discordVisible);
@@ -181,6 +184,32 @@ export default function Home() {
                     </motion.div>
                 </div>
             </div>
+          {/* ✅ Toggle QR Code Button */}
+            <div className="hidden md:block fixed bottom-4 left-4 z-50">
+                 {/* ✅ QR Code Box (only when visible) */}
+                {showQR && (
+                    <div className="mb-2 bg-white p-2 rounded-lg shadow-lg">
+                        <Image
+                            src="/qr-code.png"
+                            alt="QR Code to portfolio"
+                            width={96}
+                            height={96}
+                            className="w-36 h-36 object-cover rounded-lg"
+                            priority
+                        />
+                        <p className="text-xs text-center text-gray-600">Scan me</p>
+                    </div>
+                )}
+                <button
+                    onClick={toggleQR}
+                    className="bg-red-600 text-white px-3 py-1 text-sm rounded-lg shadow hover:bg-red-700 transition"
+                >
+                    {showQR ? 'Hide QR' : 'Show QR'}
+                </button>
+
+               
+            </div>
+
         </section>
     );
 }
