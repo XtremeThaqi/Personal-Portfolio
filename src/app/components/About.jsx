@@ -45,7 +45,7 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-lg text-gray-300 leading-relaxed">
-                            Hi there! I'm <span className="text-red-500 font-medium">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo. 
+                            Hi there! I&apos;m <span className="text-red-500 font-medium">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo. 
                             I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
                         </p>
                         
@@ -133,7 +133,7 @@ export default function About() {
                         className="mt-8 p-6 bg-gray-800/50 border-l-4 border-red-600 rounded-r-lg"
                     >
                         <p className="text-lg italic text-gray-300">
-                            "Confusion is part of programming."
+                            &quot;Confusion is part of programming.&quot;
                         </p>
                         <p className="text-red-400 mt-2">— Felienne Hermans</p>
                     </motion.div>

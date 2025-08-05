@@ -72,7 +72,7 @@ export default function Home() {
                             </div>
 
                             <h2 className="text-4xl md:text-5xl font-bold text-white">
-                                I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">Erblin Thaqi</span>
+                                I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">Erblin Thaqi</span>
                             </h2>
 
                             <motion.p
