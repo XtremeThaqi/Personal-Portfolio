@@ -212,5 +212,3 @@ export default function Contact() {
         </div>
     );
 }
-//mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]
-// cursor-text shadow2 mb-[15px] text-[19px] w-[400px] h-[220px] resize-y max-h-[400px] rounded-[5px] outline-none text-zinc-300 bg-transparent p-[10px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]
