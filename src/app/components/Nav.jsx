@@ -2,24 +2,16 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
 import { FaBars } from 'react-icons/fa';
 import { HiXMark } from 'react-icons/hi2';
 
 export default function Nav() {
     const [active, setActive] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState(null);
 
-    // toggle to open menu
-    const openMenu = () => {
-        setActive(!active);
-    }
+    const toggleMenu = () => setActive(!active);
+    const closeMenu = () => setActive(false);
 
-    // toggle to close menu.
-    const closeMenu = () => {
-        setActive(false);
-    }
-
-    // data
     const navData = [
         { id: 1, name: 'Home', href: '#home' },
         { id: 2, name: 'About', href: '#about' },
@@ -30,61 +22,129 @@ export default function Nav() {
 
     return (
         <>
-            <nav className="fixed top-0 w-[100%] p-[20px] border-b-red-600 z-20 border border-l-black border-t-black border-r-black">
+            <nav className="fixed top-0 w-full p-5 bg-black border-b border-gray-800 z-50">
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative flex justify-around flex-row-reverse items-center">
-                    <div onClick={openMenu} className="text-red-600 text-[1.8rem] cursor-pointer">
-                        <FaBars />
-                    </div>
-                    <ul>
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="flex justify-between items-center max-w-7xl mx-auto"
+                >
+                    {/* Logo with cool hover effect */}
+                    <motion.a
+                        whileHover={{ 
+                            scale: 1.05,
+                            textShadow: "0 0 8px rgba(255,255,255,0.5)"
+                        }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="text-2xl font-bold text-white"
+                        href="/"
+                    >
+                        Erblin<span className="text-gray-400">.</span>
+                    </motion.a>
 
-                        <li>
-                            <a className="text-red-600 text-[1.4rem]" href="/">Erblin.</a>
-                        </li>
-
-                        {active && (
-                            <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5, ease: 'linear' }}
-                                className="absolute -top-5 -right-6 w-64 h-screen bg-red-600 text-white p-6 shadow">
-                                <div className="flex justify-end items-center mb-5">
+                    {/* Desktop Navigation */}
+                    <ul className="hidden md:flex space-x-8">
+                        {navData.map((item) => (
+                            <li 
+                                key={item.id}
+                                onMouseEnter={() => setHoveredItem(item.id)}
+                                onMouseLeave={() => setHoveredItem(null)}
+                                className="relative"
+                            >
+                                <motion.a
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ type: "spring", stiffness: 400 }}
+                                    className="text-white relative z-10 px-2 py-1"
+                                    href={item.href}
+                                >
+                                    {item.name}
+                                </motion.a>
+                                {hoveredItem === item.id && (
                                     <motion.div
-                                        whileTap={{ scale: 0.9 }}
-                                        initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.1 }}
-                                    >
-                                        <HiXMark className="text-2xl cursor-pointer" onClick={closeMenu} />
-                                    </motion.div>
-                                </div>
+                                        layoutId="navHover"
+                                        className="absolute inset-0 bg-white bg-opacity-20 rounded-md"
+                                        transition={{ type: "spring", bounce: 0.2 }}
+                                    />
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+
+                    {/* Mobile Menu Button */}
+                    <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={toggleMenu}
+                        className="md:hidden text-white text-2xl cursor-pointer"
+                    >
+                        <FaBars />
+                    </motion.div>
+                </motion.div>
+
+                {/* Mobile Menu */}
+                {active && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0, x: '100%' }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: '100%' }}
+                            transition={{ type: "spring", bounce: 0.1 }}
+                            className="fixed top-0 right-0 w-72 h-screen bg-black bg-opacity-95 backdrop-blur-sm shadow-2xl z-50 p-8 border-l border-gray-800"
+                        >
+                            <div className="flex justify-between items-center mb-12">
+                                <motion.a
+                                    whileHover={{ scale: 1.05 }}
+                                    className="text-xl font-bold text-white"
+                                    href="/"
+                                    onClick={closeMenu}
+                                >
+                                    Erblin<span className="text-gray-400">.</span>
+                                </motion.a>
+                                <motion.div
+                                    whileHover={{ rotate: 90 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    <HiXMark 
+                                        className="text-3xl cursor-pointer text-white" 
+                                        onClick={closeMenu} 
+                                    />
+                                </motion.div>
+                            </div>
+                            <ul className="space-y-6">
                                 {navData.map((item) => (
-                                    <li key={item.id} className="cursor-pointer mb-5">
-                                        <a className="text-lg"
+                                    <motion.li
+                                        key={item.id}
+                                        initial={{ x: 20, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        transition={{ delay: 0.1 * item.id }}
+                                    >
+                                        <motion.a
+                                            whileHover={{ 
+                                                x: 10,
+                                                color: "#fff"
+                                            }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="block text-2xl text-gray-400 hover:text-white transition-colors pl-4 border-l-2 border-gray-800 hover:border-white"
                                             href={item.href}
+                                            onClick={closeMenu}
                                         >
                                             {item.name}
-                                        </a>
-                                    </li>
+                                        </motion.a>
+                                    </motion.li>
                                 ))}
-                            </motion.div>
-                        )}
-                    </ul>
-                </motion.div>
+                            </ul>
+                        </motion.div>
 
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.7 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 bg-black z-40"
+                            onClick={closeMenu}
+                        />
+                    </>
+                )}
             </nav>
-            {active && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: .5 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="fixed inset-0 bg-black opacity-50 z-10"
-                    onClick={closeMenu}>
-                </motion.div>
-            )}
         </>
     )
 }
