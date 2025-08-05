@@ -1,214 +1,221 @@
 "use client";
-import { useState } from "react";
-import { motion } from 'framer-motion';
-import { FaUser, FaEnvelope, FaPaperPlane } from "react-icons/fa";
-import { FaMessage } from "react-icons/fa6";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { FiUser, FiMail, FiMessageSquare, FiSend } from "react-icons/fi";
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-    const [submitted, setSubmitted] = useState(false);
-    const [successMessage, setSuccessMessage] = useState(false);
+    const form = useRef();
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+    const [errors, setErrors] = useState({
+        name: false,
+        email: false,
+        message: false
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-    // state for validation
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-
-    // error state
-    const [nameError, setNameError] = useState(false);
-    const [emailError, setEmailError] = useState(false);
-    const [messageError, setMessageError] = useState(false);
-
-    // handle input change
-    const onChange = (e) => {
-        const { name, value } = e.target;
-
-        if (name === "name") {
-            setName(value);
-            setNameError(false);
-        } else if (name === "email") {
-            setEmail(value);
-            setEmailError(false);
-        } else if (name === "message") {
-            setMessage(value);
-            setMessageError(false);
+    const validateField = (name, value) => {
+        switch (name) {
+            case "name":
+                return /^[a-zA-Z\s]*$/.test(value) && value.length >= 2;
+            case "email":
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            case "message":
+                return value.length >= 10;
+            default:
+                return true;
         }
     };
 
-    // validation functions
-    const nameValidation = () => {
-        return !(name === "" || !name.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/));
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: false }));
     };
 
-    const emailValidation = () => {
-        return !(email === "" || !email.match(/^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/));
-    };
-
-    const messageValidation = () => {
-        return message.length >= 5;
-    };
-
-    // submit form
-    const onSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
 
-        // Perform validation on submit
-        const isNameValid = nameValidation();
-        const isEmailValid = emailValidation();
-        const isMessageValid = messageValidation();
+        // Validate all fields
+        const newErrors = {
+            name: !validateField("name", formData.name),
+            email: !validateField("email", formData.email),
+            message: !validateField("message", formData.message)
+        };
+        setErrors(newErrors);
 
-        if (!isNameValid) setNameError(true);
-        if (!isEmailValid) setEmailError(true);
-        if (!isMessageValid) setMessageError(true);
-
-        if (isNameValid && isEmailValid && isMessageValid) {
-            const formData = new FormData(e.target);
-            formData.append("access_key", "1101d744-cf60-4cbf-b87e-e3067d029143");
-
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
+        if (!Object.values(newErrors).some(error => error)) {
             try {
-                const response = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    },
-                    body: json
-                });
+                await emailjs.sendForm('service_x7ad9n2', 'template_dtq8b0u', form.current, 'D8iqse_Hvt9TS8Tcs');
 
-                const res = await response.json();
-
-                if (res.success === true) {
-                    setSubmitted(true);
-                    setSuccessMessage(true);
-                    setName("");
-                    setEmail("");
-                    setMessage("");
-                    setTimeout(() => {
-                        setSuccessMessage(false);
-                    }, 6000);
-                } else {
-                    setSubmitted(false);
-                    setSuccessMessage(false);
-                }
+                setIsSuccess(true);
+                setFormData({ name: "", email: "", message: "" });
+                setTimeout(() => setIsSuccess(false), 5000);
             } catch (error) {
-                console.error("Fetch error:", error);
+                console.error("Failed to send message:", error);
             }
         }
+        setIsSubmitting(false);
     };
 
     return (
-        <div className="w-full h-full px-0 py-[100px] overflow-hidden" id="contact">
-            <div className="max-w-full flex flex-col items-center">
-
+        <section className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-20 px-4" id="contact">
+            <div className="max-w-2xl mx-auto">
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-[50px] text-center">
-                    <h2 className="text-[40px] text-[#cf2525] font-bold underline">
-                        Contact Me
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                >
+                    <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 mb-4">
+                        Get In Touch
                     </h2>
-                    <p className="text-[14px] w-[320px] text-[#cf2525]">
-                        Contact me if u need any help on ur project. And I will get to you ASAP!
+                    <p className="text-lg text-gray-400">
+                        Have a project in mind or want to chat? Send me a message.
                     </p>
                 </motion.div>
 
-                <form onSubmit={onSubmit} method="POST" className="gap-1 max-[400px]:flex max-[400px]:flex-col max-[400px]:justify-center max-[400px]:items-center max-[400px]:w-[300px]">
+                <motion.form
+                    ref={form}
+                    onSubmit={handleSubmit}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-gray-900 p-8 rounded-xl border border-gray-800 shadow-lg"
+                >
+                    <div className="space-y-6">
+                        {/* Name Field - Fixed the name attribute */}
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
+                                Your Name
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <FiUser className="h-5 w-5 text-gray-500" />
+                                </div>
+                                <input
+                                    id="name"
+                                    name="name"  // Changed from "from_name" to "name"
+                                    type="text"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    onBlur={() => setErrors(prev => ({ ...prev, name: !validateField("name", formData.name) }))}
+                                    className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.name ? 'border-red-500' : 'border-gray-700'} text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
+                                    placeholder="John Doe"
+                                />
+                            </div>
+                            {errors.name && <p className="mt-2 text-sm text-red-500">Please enter a valid name</p>}
+                        </div>
 
-                    {/* Name */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative w-full"
-                    >
-                        <label htmlFor="text">
-                            <FaUser className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
-                        </label>
-                        <input
-                            className="shadow2 mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]"
-                            type="text" placeholder="Name" name='name'
-                            id="text" autoComplete="name"
-                            onChange={onChange}
-                            onBlur={nameValidation}
-                            value={name} maxLength="30" minLength="3"
-                        />
-                        {nameError && <p className="-mt-5 text-[14px] text-[#cf2525]">Please enter a valid name!</p>}
-                    </motion.div>
+                        {/* Email Field - Fixed the name attribute */}
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">
+                                Email Address
+                            </label>
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <FiMail className="h-5 w-5 text-gray-500" />
+                                </div>
+                                <input
+                                    id="email"
+                                    name="email"  // Changed from "from_email" to "email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    onBlur={() => setErrors(prev => ({ ...prev, email: !validateField("email", formData.email) }))}
+                                    className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.email ? 'border-red-500' : 'border-gray-700'} text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
+                                    placeholder="you@example.com"
+                                />
+                            </div>
+                            {errors.email && <p className="mt-2 text-sm text-red-500">Please enter a valid email</p>}
+                        </div>
 
-                    {/* Email */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative w-full">
-                        <label htmlFor="email">
-                            <FaEnvelope className="cursor-text absolute text-[18px] right-[15px] top-[15px] text-[#cf2525]" />
-                        </label>
-                        <input
-                            className="mb-5 text-zinc-300 text-[20px] outline-none bg-transparent w-full py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525]"
-                            type="email" placeholder="Email" name='email'
-                            id="email" autoComplete="email"
-                            onChange={onChange}
-                            value={email} maxLength="30" minLength="3"
-                        />
-                        {emailError && <p className="-mt-5 text-[14px] text-[#cf2525]">Please enter a valid email!</p>}
-                    </motion.div>
+                        {/* Message Field */}
+                        <div>
+                            <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">
+                                Your Message
+                            </label>
+                            <div className="relative">
+                                <div className="absolute top-3 left-3">
+                                    <FiMessageSquare className="h-5 w-5 text-gray-500" />
+                                </div>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows={5}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    onBlur={() => setErrors(prev => ({ ...prev, message: !validateField("message", formData.message) }))}
+                                    className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${errors.message ? 'border-red-500' : 'border-gray-700'} text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
+                                    placeholder="Tell me about your project..."
+                                />
+                            </div>
+                            {errors.message && <p className="mt-2 text-sm text-red-500">Message must be at least 10 characters</p>}
+                        </div>
 
-                    {/* Message */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative">
-                        <label htmlFor="message">
-                            <FaMessage className="absolute text-[18px] right-[15px] bottom-8 text-[#cf2525]" />
-                        </label>
-                        <textarea
-                            className="mb-5 text-zinc-300 text-[20px] w-[400px] h-[220px] outline-none bg-transparent py-[7px] px-[15px] pr-10 rounded-[5px] border border-[#cf2525] placeholder:text-[#cf2525] max-md:w-[350px] max-[400px]:w-[300px]"
-                            type="text" cols="40" rows="10"
-                            name='message' id="message" placeholder="Message..."
-                            autoComplete="off"
-                            onChange={onChange}
-                            onBlur={messageValidation}
-                            value={message}
-                        />
-                        {messageError && <p className="text-[14px] -mt-4 text-[#cf2525]">Please enter a valid message!</p>}
-                    </motion.div>
+                        {/* Hidden fields for EmailJS template */}
+                        <input type="hidden" name="from_name" value={formData.name} />
+                        <input type="hidden" name="from_email" value={formData.email} />
 
-                    {/* Submit button */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="relative">
-                        <label htmlFor="submit">
-                            <FaPaperPlane className="cursor-pointer absolute right-[15px] top-[15px] text-[#cf2525]" />
-                        </label>
-                        <button className="shadow bg-transparent w-full py-[10px] px-[15px] text-[17px] rounded-[3px] cursor-pointer text-[#cf2525] border border-[#cf2525] coursor-pointer max-[400px]:w-[300px]" id="submit">
-                            Send Message
-                        </button>
-                    </motion.div>
+                        {/* Submit Button */}
+                        <motion.button
+                            type="submit"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            disabled={isSubmitting}
+                            className={`w-full py-3 px-6 bg-gradient-to-r from-red-600 to-red-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-80 cursor-not-allowed' : 'hover:shadow-red-500/20 hover:shadow-lg'} transition-all`}
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Sending...
+                                </>
+                            ) : (
+                                <>
+                                    <FiSend />
+                                    Send Message
+                                </>
+                            )}
+                        </motion.button>
+                    </div>
+                </motion.form>
 
-                </form>
 
-                {/* Success Message */}
-                {successMessage && (
-                    <div className="fixed top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] bg-white p-4 rounded-md text-center w-[300px]">
-                        <h1 className="text-[19px] font-bold text-green-600 max-[450px]:text-[16px]">
-                            Your message has been successfully received.
-                        </h1>
-                        <p className="text-[17px] mt-2 text-gray-700 max-[450px]:text-[15px]">
-                            Thank you.
-                            <span className="block">
-                                I will get to you soon.
-                            </span>
-                        </p>
+                {isSuccess && (
+                    <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="bg-gray-900 p-8 rounded-xl border border-gray-800 max-w-md w-full text-center shadow-xl"
+                        >
+                            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-900/20 text-red-500 border border-red-900/50 mb-4">
+                                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <h3 className="text-2xl font-medium text-white mb-2">Message Sent!</h3>
+                            <p className="text-gray-400 mb-6">
+                                Thank you for reaching out. I'll get back to you soon.
+                            </p>
+                            <button
+                                onClick={() => setIsSuccess(false)}
+                                className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                            >
+                                Close
+                            </button>
+                        </motion.div>
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     );
 }
