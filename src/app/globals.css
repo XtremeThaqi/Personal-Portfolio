@@ -1,14 +1,16 @@
+/* Base Tailwind Layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Global Styles */
 html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #cf2525 white;
+  scrollbar-color: #cf2525 #ffffff; /* For Firefox */
 }
 
 body {
@@ -17,57 +19,24 @@ body {
   overflow-x: hidden;
 }
 
-/* scroll-bar */
+/* Custom Scrollbar for WebKit Browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
+  background-color: #f8f8f8;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cf2525;
+  background-color: #cf2525;
+  border-radius: 10px;
+  border: 2px solid #f8f8f8;
+  transition: background-color 0.3s ease;
 }
 
-/* ↓ everything here is for skills section! ↓ */
-.card {
-  @apply relative flex items-center mr-[20px] rounded-[5px] border border-[#cf2525] p-2 mb-5 gap-5 shadow
-}
-
-.card-primary {
-  @apply w-[220%] mr-[-200px] flex-row-reverse cursor-default
-}
-
-.card-primary::before {
-  @apply right-[-11px] top-[10px] bg-[#cf2525] w-[5px] h-[33px] rounded-full
-}
-
-.card-primary::after {
-  @apply right-[-13.5px] top-[0.5px] bg-[#cf2525] w-[10px] h-[10px] rounded-full
-}
-
-.card-secondary {
-  @apply w-[220%] ml-[-210px] cursor-default
-}
-
-.card-secondary::before {
-  @apply left-[-11px] top-[10px] bg-[#cf2525] w-[5px] h-[33px] rounded-full
-}
-
-.card-secondary::after {
-  @apply left-[-13.5px] top-[0.5px] bg-[#cf2525] w-[10px] h-[10px] rounded-full
-}
-
-/* ↑ everything here is for skills section! ↑ */
-
-/* shadow for icons and for contact buttons. */
-.shadow {
-  box-shadow: 0 0 10px rgba(255, 0, 0, .8),
-              inset 0 0 10px rgba(255, 0, 0, .5);
-}
-
-.shadow2 {
-  box-shadow: 0 0 30px rgba(255, 0, 0, .8),
-              inset 0 0 10px rgba(255, 0, 0, .6);
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a91e1e;
 }
