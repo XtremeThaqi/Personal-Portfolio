@@ -34,7 +34,6 @@ export default function Skills() {
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-900/80 to-black/80"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-20"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
