@@ -196,7 +196,6 @@ export default function Home() {
                                 height={140}
                                 loading="lazy"
                                 className="w-40 h-40 object-cover rounded-lg border-2 border-gray-200"
-                                priority
                             />
                             <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
                         </div>
