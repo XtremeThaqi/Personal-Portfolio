@@ -45,12 +45,12 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-lg text-gray-300 leading-relaxed">
-                            Hi there! I&apos;m <span className="text-red-500 font-medium">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo. 
+                            Hi there! I&apos;m <span className="text-red-500 font-medium">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo.
                             I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
                         </p>
-                        
+
                         <p className="text-lg text-gray-300 leading-relaxed">
-                            I create responsive interfaces while implementing robust server-side functionality. 
+                            I create responsive interfaces while implementing robust server-side functionality.
                             My approach combines creative problem-solving with clean, efficient code.
                         </p>
 
@@ -59,7 +59,7 @@ export default function About() {
                                 <motion.div
                                     key={index}
                                     whileHover={{ y: -5 }}
-                                    className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-gray-700"
+                                    className="select-none cursor-default flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg border border-gray-700"
                                 >
                                     {skill.icon}
                                     <span className="text-gray-300">{skill.name}</span>
@@ -78,7 +78,7 @@ export default function About() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             href="#contact"
-                            className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-medium shadow-lg hover:shadow-red-500/30 transition-all"
+                            className="select-none inline-block px-8 py-3 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-medium shadow-lg hover:shadow-red-500/30 transition-all"
                         >
                             Contact Me
                         </motion.a>
@@ -86,7 +86,7 @@ export default function About() {
                 </div>
 
                 {/* Right Column - Visual Elements */}
-                <motion.div 
+                <motion.div
                     className="hidden lg:flex flex-col gap-8"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -98,28 +98,28 @@ export default function About() {
                             <div className="p-4 bg-gray-800 rounded-xl border border-gray-700 shadow-lg">
                                 <FaCode className="text-4xl text-red-500" />
                             </div>
-                            <div>
+                            <div className="select-none cursor-default">
                                 <h4 className="text-xl text-white font-medium">Frontend</h4>
                                 <p className="text-gray-400">React, Next.js, Tailwind</p>
                             </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-6 ml-12">
                             <div className="p-4 bg-gray-800 rounded-xl border border-gray-700 shadow-lg">
                                 <FaServer className="text-4xl text-red-500" />
                             </div>
-                            <div>
+                            <div className="select-none cursor-default">
                                 <h4 className="text-xl text-white font-medium">Backend</h4>
                                 <p className="text-gray-400">PHP, Laravel, Node.js</p>
                             </div>
                         </div>
-                        
+
                         <div className="flex items-center gap-6">
                             <div className="p-4 bg-gray-800 rounded-xl border border-gray-700 shadow-lg">
                                 <FaDatabase className="text-4xl text-red-500" />
                             </div>
-                            <div>
-                                <h4 className="text-xl text-white font-medium">Database</h4>
+                            <div className="select-none cursor-default">
+                                <h4 className="text-xl text-white font-medium ">Database</h4>
                                 <p className="text-gray-400">MySQL</p>
                             </div>
                         </div>
