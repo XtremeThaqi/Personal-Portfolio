@@ -71,7 +71,7 @@ export default function Footer() {
                         <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600">
                             Erblin Thaqi
                         </h2>
-                        <p className="text-sm text-gray-400 mt-1">Full Stack Developer</p>
+                        <p className="text-sm text-gray-400 mt-1">Full Stack Web Developer</p>
                     </motion.div>
 
                     {/* Social Links */}
