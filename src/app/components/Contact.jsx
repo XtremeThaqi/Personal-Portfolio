@@ -90,7 +90,6 @@ export default function Contact() {
                     className="bg-gray-900 p-8 rounded-xl border border-gray-800 shadow-lg"
                 >
                     <div className="space-y-6">
-                        {/* Name Field - Fixed the name attribute */}
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
                                 Your Name
@@ -101,7 +100,7 @@ export default function Contact() {
                                 </div>
                                 <input
                                     id="name"
-                                    name="name"  // Changed from "from_name" to "name"
+                                    name="name"
                                     type="text"
                                     value={formData.name}
                                     onChange={handleChange}
@@ -113,7 +112,6 @@ export default function Contact() {
                             {errors.name && <p className="mt-2 text-sm text-red-500">Please enter a valid name</p>}
                         </div>
 
-                        {/* Email Field - Fixed the name attribute */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">
                                 Email Address
@@ -124,7 +122,7 @@ export default function Contact() {
                                 </div>
                                 <input
                                     id="email"
-                                    name="email"  // Changed from "from_email" to "email"
+                                    name="email"
                                     type="email"
                                     value={formData.email}
                                     onChange={handleChange}
