@@ -110,6 +110,7 @@ export default function Projects() {
                 <Image
                   src={project.image}
                   alt={project.title}
+                  loading='lazy'
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />

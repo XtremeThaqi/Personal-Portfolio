@@ -194,6 +194,7 @@ export default function Home() {
                                 alt="QR Code to portfolio"
                                 width={140}
                                 height={140}
+                                loading="lazy"
                                 className="w-40 h-40 object-cover rounded-lg border-2 border-gray-200"
                                 priority
                             />
