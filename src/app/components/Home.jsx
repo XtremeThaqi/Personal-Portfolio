@@ -146,7 +146,7 @@ export default function Home() {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
-                                className="absolute bottom-0 left-0 bg-gray-800 p-4 rounded-lg shadow-xl border border-gray-700 mt-4 flex items-center gap-3"
+                                className="absolute bottom-0 left-10 bg-gray-800 p-4 rounded-lg shadow-xl border border-gray-700 mt-4 flex items-center gap-3"
                             >
                                 <span className="text-white font-medium">thaqi_429</span>
                                 <button
@@ -168,8 +168,7 @@ export default function Home() {
                             </motion.div>
                         )}
                     </div>
-
-                    {/* Right Column - Visual Element (placeholder for image/illustration) */}
+                    {/* Right Column - Animated Image */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -184,32 +183,55 @@ export default function Home() {
                     </motion.div>
                 </div>
             </div>
-          {/* ✅ Toggle QR Code Button */}
+            {/* Toggle QR Code Button */}
             <div className="hidden md:block fixed bottom-4 left-4 z-50">
-                 {/* ✅ QR Code Box (only when visible) */}
+                {/* QR Code Box with enhanced styling */}
                 {showQR && (
-                    <div className="mb-2 bg-white p-2 rounded-lg shadow-lg">
-                        <Image
-                            src="/qr-code.png"
-                            alt="QR Code to portfolio"
-                            width={96}
-                            height={96}
-                            className="w-36 h-36 object-cover rounded-lg"
-                            priority
-                        />
-                        <p className="text-xs text-center text-gray-600">Scan me</p>
+                    <div className="mb-3 bg-white p-3 rounded-xl shadow-2xl border border-gray-100 transform transition-all duration-300 hover:scale-[1.02]">
+                        <div className="relative group">
+                            <Image
+                                src="/qr-code.png"
+                                alt="QR Code to portfolio"
+                                width={140}
+                                height={140}
+                                className="w-40 h-40 object-cover rounded-lg border-2 border-gray-200"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
+                        </div>
+                        <p className="text-xs text-center mt-2 text-gray-500 font-medium tracking-wide">
+                            Scan to visit portfolio
+                        </p>
                     </div>
                 )}
+
+                {/* Animated button with better styling */}
                 <button
                     onClick={toggleQR}
-                    className="bg-red-600 text-white px-3 py-1 text-sm rounded-lg shadow hover:bg-red-700 transition"
+                    className={`relative overflow-hidden flex items-center justify-center gap-1 bg-gradient-to-br ${showQR ? 'from-red-600 to-red-700' : 'from-blue-600 to-blue-700'} text-white px-4 py-2 text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:brightness-110`}
                 >
-                    {showQR ? 'Hide QR' : 'Show QR'}
+                    <span className="relative z-10 flex items-center">
+                        {showQR ? (
+                            // Hide QR Icon
+                            <>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                Hide QR
+                            </>
+                        ) : (
+                            // Show QR Icon
+                            <>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                </svg>
+                                Show QR
+                            </>
+                        )}
+                    </span>
+                    <span className={`absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-200 rounded-xl`}></span>
                 </button>
-
-               
             </div>
-
         </section>
     );
 }
