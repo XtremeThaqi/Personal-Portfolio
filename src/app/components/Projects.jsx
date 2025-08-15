@@ -5,7 +5,7 @@ import Image from "next/image";
 import img1 from './images/img1.png';
 import img2 from './images/img2.png';
 import img3 from './images/img3.png';
-import img4 from './images/img4.jpg';
+import img4 from './images/img4.png';
 import { RiNextjsFill, RiTailwindCssFill, RiGithubFill, } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
 import { FiChevronDown } from "react-icons/fi";
