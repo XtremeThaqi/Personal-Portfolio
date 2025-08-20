@@ -65,7 +65,7 @@ export default function Skills() {
               <div className="text-4xl mb-3 text-red-500 group-hover:text-white transition-colors">
                 {skill.icon}
               </div>
-              <h3 className="text-lg font-medium text-white select-none cursor-default">{skill.name}</h3>
+              <h3 className="text-lg font-medium text-white select-none cursor-default text-center">{skill.name}</h3>
               <span className="text-xs text-gray-400 mt-1 select-none cursor-default">{skill.category}</span>
 
               {/* Glow effect */}
