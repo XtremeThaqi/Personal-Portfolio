@@ -38,17 +38,6 @@ export default function Projects() {
       link: "https://quicktaskss.netlify.app"
     },
     {
-      title: "Smartphone E-commerce Store",
-      description: "A complete online smartphone store with product catalog, shopping cart, and admin dashboard.",
-      image: img3,
-      technologies: [
-        { icon: <SiPhp className="text-2xl text-purple-500" />, name: "PHP" },
-        { icon: <SiMysql className="text-2xl text-blue-500" />, name: "MySQL" },
-        { icon: <RiTailwindCssFill className="text-2xl text-cyan-400" />, name: "Tailwind" }
-      ],
-      link: "https://smartphone-store.rf.gd"
-    },
-    {
       title: "Technology News Portal",
       description: "A responsive news website featuring the latest tech articles, with dark/light mode and dynamic content loading.",
       image: img4,
@@ -164,7 +153,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {!showAll && projects.length > 2 && (
+        {!showAll && projects.length > 1 && (
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0 }}
