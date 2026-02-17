@@ -180,3 +180,15 @@ export default function Nav() {
         </>
     );
 }
+
+//  <motion.a
+                        //     whileHover={{
+                        //         scale: 1.05,
+                        //         textShadow: "0 0 8px rgba(255,255,255,0.5)"
+                        //     }}
+                        //     transition={{ type: "spring", stiffness: 300 }}
+                        //     className="text-xl sm:text-2xl font-bold text-white whitespace-nowrap flex-shrink-0 pl-3 sm:pl-4 md:pl-0"
+                        //     href="/"
+                        // >
+                        //     Erblin<span className="text-gray-300">.</span>
+                        // </motion.a>
