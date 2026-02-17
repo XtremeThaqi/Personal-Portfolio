@@ -2,37 +2,23 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaDiscord } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
-import { IoCopyOutline } from "react-icons/io5";
-import Image from "next/image";
 
 export default function Home() {
     const [discordVisible, setDiscordVisible] = useState(false);
     const [copied, setCopied] = useState(false);
-    const [showQR, setShowQR] = useState(false);
-
-    const toggleDiscord = () => {
-        setDiscordVisible(!discordVisible);
-        setCopied(false);
-    };
-
-    const copyDiscord = () => {
-        navigator.clipboard.writeText("thaqi_429");
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1800);
-    };
 
     const socialLinks = [
         { icon: <FaGithub />, href: "https://github.com/XtremeThaqi" },
         { icon: <RiTwitterXFill />, href: "https://x.com/erblinthaq44084" },
         { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/erblinthaqi" },
-        { icon: <FaDiscord />, onClick: toggleDiscord },
+        { icon: <FaInstagram />, href: "https://www.instagram.com/thaqiierblin/" },
     ];
 
     return (
         <section id="home" className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black flex items-center justify-center px-5 sm:px-8 overflow-hidden">
-            <div className="z-10 max-w-6xl py-36 lg:py-40">
+            <div className="z-10 max-w-6xl pt-24 sm:pt-32">
                 {/* Main name */}
                 <motion.h1
                     initial={{ opacity: 0, y: 50 }}
@@ -91,7 +77,7 @@ export default function Home() {
                     </motion.a>
                 </motion.div>
 
-                {/* Social icons + QR + Discord popup */}
+                {/* Social icons + Discord popup */}
                 <div className="flex flex-col items-center gap-10">
                     {/* Socials */}
                     <div className="flex gap-6">
@@ -111,28 +97,6 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-
-                {/* Discord popup – positioned to the side */}
-                {discordVisible && (
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 30 }}
-                        className="fixed bottom-32 right-8 sm:right-12 lg:right-20 bg-zinc-900/95 backdrop-blur-xl border border-zinc-700/50 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 w-72 max-w-[90vw]"
-                    >
-                        <div className="text-4xl">💬</div>
-                        <div className="flex-1">
-                            <p className="text-white font-medium text-lg">thaqi_429</p>
-                            <button
-                                onClick={copyDiscord}
-                                className="text-sm flex items-center gap-2 text-zinc-400 hover:text-emerald-400 mt-1 transition-colors"
-                            >
-                                <IoCopyOutline />
-                                {copied ? "Copied!" : "Copy username"}
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
             </div>
         </section>
     );
