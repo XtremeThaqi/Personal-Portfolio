@@ -103,32 +103,12 @@ export default function Home() {
                                 target={social.href ? "_blank" : undefined}
                                 whileHover={{ y: -6, scale: 1.15 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="w-14 h-14 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/50 rounded-2xl flex items-center justify-center text-2xl text-zinc-300 hover:text-white hover:border-zinc-500/70 transition-all"
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                className="w-14 h-14 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/50 rounded-2xl flex items-center justify-center text-2xl text-zinc-300 hover:text-white hover:border-zinc-500/70 cursor-pointer"
                             >
                                 {social.icon}
                             </motion.a>
                         ))}
-                    </div>
-
-                    {/* Bottom QR & scan text */}
-                    <div className="flex flex-col items-center gap-4">
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            onClick={() => setShowQR(!showQR)}
-                            className="cursor-pointer"
-                        >
-                            <Image
-                                src="/qr-code.png" // ← your QR image
-                                alt="QR Code"
-                                width={140}
-                                height={140}
-                                className="rounded-2xl border border-zinc-700/50 shadow-2xl"
-                            />
-                        </motion.div>
-
-                        <p className="text-sm text-zinc-500 tracking-wider">
-                            SCAN TO VISIT
-                        </p>
                     </div>
                 </div>
 
@@ -138,12 +118,7 @@ export default function Home() {
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 30 }}
-                        className="
-              fixed bottom-32 right-8 sm:right-12 lg:right-20
-              bg-zinc-900/95 backdrop-blur-xl border border-zinc-700/50
-              px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4
-              w-72 max-w-[90vw]
-            "
+                        className="fixed bottom-32 right-8 sm:right-12 lg:right-20 bg-zinc-900/95 backdrop-blur-xl border border-zinc-700/50 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 w-72 max-w-[90vw]"
                     >
                         <div className="text-4xl">💬</div>
                         <div className="flex-1">
