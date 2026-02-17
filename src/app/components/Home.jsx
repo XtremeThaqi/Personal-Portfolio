@@ -6,8 +6,6 @@ import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 
 export default function Home() {
-    const [discordVisible, setDiscordVisible] = useState(false);
-    const [copied, setCopied] = useState(false);
 
     const socialLinks = [
         { icon: <FaGithub />, href: "https://github.com/XtremeThaqi" },
