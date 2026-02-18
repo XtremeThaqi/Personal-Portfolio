@@ -25,7 +25,11 @@ export default function Nav() {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 p-6 bg-transparent z-50 pointer-events-none overflow-hidden">
+        <motion.nav
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.9 }}
+            className="fixed top-0 left-0 right-0 p-6 bg-transparent z-50 pointer-events-none overflow-hidden">
             <div className="flex justify-center pointer-events-auto">
                 {/* Main container */}
                 <div className="relative flex items-center justify-center gap-6 sm:gap-10 md:gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-12 py-3 md:py-4 border-zinc-700 bg-zinc-900/70 backdrop-blur-md border rounded-2xl max-w-full md:max-w-5xl mx-auto overflow-hidden">
@@ -67,6 +71,6 @@ export default function Nav() {
                     </div>
                 </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 }
