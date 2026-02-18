@@ -11,7 +11,7 @@ export default function Home() {
         { icon: <FaGithub />, href: "https://github.com/XtremeThaqi" },
         { icon: <RiTwitterXFill />, href: "https://x.com/erblinthaq44084" },
         { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/erblinthaqi" },
-        { icon: <FaInstagram />, href: "https://www.instagram.com/thaqiierblin/" },
+        { icon: <FaInstagram />, href: "https://instagram.com/thaqiierblin/" },
     ];
 
     return (
@@ -87,7 +87,7 @@ export default function Home() {
                                 whileHover={{ y: -6, scale: 1.15 }}
                                 whileTap={{ scale: 0.9 }}
                                 initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                 className="w-14 h-14 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/50 rounded-2xl flex items-center justify-center text-2xl text-zinc-300 hover:text-white hover:border-zinc-500/70 cursor-pointer"
                             >
