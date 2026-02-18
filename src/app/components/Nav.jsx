@@ -25,7 +25,7 @@ export default function Nav() {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 right-0 p-4 sm:p-5 bg-transparent z-50 pointer-events-none">
+        <nav className="fixed top-0 left-0 right-0 p-6 bg-transparent z-50 pointer-events-none">
             <div className="flex justify-center pointer-events-auto">
                 {/* Main container */}
                 <div className="relative flex items-center justify-center gap-6 sm:gap-10 md:gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-12 py-3 md:py-4 border-zinc-700 bg-zinc-900/70 backdrop-blur-md border rounded-2xl max-w-full md:max-w-5xl mx-auto overflow-hidden">
@@ -51,14 +51,15 @@ export default function Nav() {
                         ))}
                     </div>
 
-                    {/* Mobile social icons – only visible below md */}
-                    <div className="md:hidden flex items-center gap-5">
+                    {/* Mobile social icons – only visible below md  and not draggable*/}
+                    <div className="md:hidden flex items-center gap-6">
                         {socialIcons.map((social, i) => (
                             <motion.a
                                 key={i}
                                 href={social.href}
                                 rel="noopener noreferrer"
                                 whileTap={{ scale: 0.9 }}
+                                draggable="false"
                                 className="text-2xl text-white/80 hover:text-white transition-colors"
                             >
                                 {social.icon}
