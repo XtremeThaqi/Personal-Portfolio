@@ -54,7 +54,7 @@ export default function Nav() {
                         ))}
                     </div>
 
-                    {/* Mobile social icons – only visible below md  and not draggable*/}
+                    {/* Mobile social icons – only visible below md */}
                     <div className="md:hidden flex items-center gap-6">
                         {socialIcons.map((social, i) => (
                             <motion.a
