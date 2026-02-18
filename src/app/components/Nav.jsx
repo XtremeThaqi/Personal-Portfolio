@@ -35,7 +35,6 @@ export default function Nav() {
                                 key={item.id}
                                 href={item.href}
                                 onMouseEnter={() => setActiveTab(item.id)}
-                                whileHover={{ y: -3 }}
                                 className={`relative text-base lg:text-lg font-medium text-white/90 hover:text-white transition-colors `}
                             >
                                 {item.name}
