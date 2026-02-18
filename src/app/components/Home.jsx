@@ -53,14 +53,13 @@ export default function Home() {
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.65, duration: 0.9 }}
                     className="flex flex-col sm:flex-row justify-center gap-5 mb-12"
                 >
                     <motion.a
                         href="#contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.96 }}
-                        className="px-10 py-4 bg-white text-black font-semibold rounded-2xl flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transition-all text-lg"
+                        className="px-10 py-4 bg-white text-black font-semibold rounded-2xl flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl text-lg"
                     >
                         Let's Talk →
                     </motion.a>
@@ -69,7 +68,7 @@ export default function Home() {
                         href="#projects"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.96 }}
-                        className="px-10 py-5 border text-center border-zinc-700 text-white font-medium rounded-2xl hover:bg-zinc-800/50 transition-all backdrop-blur-sm text-lg"
+                        className="px-10 py-5 border text-center border-zinc-700 text-white font-medium rounded-2xl hover:bg-zinc-800/50 text-lg"
                     >
                         View My Work
                     </motion.a>
