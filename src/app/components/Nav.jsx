@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaBars } from 'react-icons/fa';
-import { HiXMark } from 'react-icons/hi2';
+import { motion } from 'framer-motion';;
 import { FiCode, FiHome, FiTool, FiUser } from 'react-icons/fi';
 import { MdMail } from 'react-icons/md';
 
