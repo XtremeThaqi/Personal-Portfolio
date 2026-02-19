@@ -18,7 +18,7 @@ export default function About() {
     ];
 
     return (
-        <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-20 px-4" id="about">
+        <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className="space-y-8">
