@@ -26,6 +26,7 @@ export default function About() {
                         initial={{ opacity: 0, y: -20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
+                        viewport={{ once: true }}
                         className="space-y-2"
                     >
                         <h2 className="text-5xl font-bold text-gray-200">
@@ -42,6 +43,7 @@ export default function About() {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="space-y-6"
                     >
@@ -58,6 +60,7 @@ export default function About() {
                                 <motion.div
                                     key={index}
                                     whileHover={{ y: -5 }}
+                                    viewport={{ once: true }}
                                     className="select-none cursor-default flex items-center gap-2 px-4 py-2 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-lg"
                                 >
                                     {skill.icon}
@@ -71,12 +74,14 @@ export default function About() {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
+                        viewport={{ once: true }}
                         className="pt-8"
                     >
                         <motion.a
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             href="#contact"
+                            viewport={{ once: true }}
                             className="px-10 py-5 border text-center border-zinc-700 text-white font-medium rounded-2xl hover:bg-zinc-800/50 text-lg"
                         >
                             Contact Me
@@ -89,6 +94,7 @@ export default function About() {
                     className="hidden lg:flex flex-col gap-8"
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                 >
                     {/* Full-Stack Visualization */}
@@ -126,6 +132,7 @@ export default function About() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.6 }}
                         className="mt-8 p-6 bg-zinc-900/50 backdrop-blur-md border-l-4 border-red-600 rounded-r-lg"
                     >
