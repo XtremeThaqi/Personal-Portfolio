@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiUser, FiMail, FiMessageSquare, FiSend } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
+const EmailJS = React.lazy(() => import("@emailjs/browser"));
 
 export default function Contact() {
   const form = useRef(null);
@@ -40,7 +41,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
+    const emailjs = (await EmailJS).default;
     setIsSubmitting(true);
     try {
       await emailjs.sendForm(
