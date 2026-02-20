@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -8,7 +9,7 @@ import {
   FaReact,
   FaFigma,
   FaPhp,
-  FaLaravel
+  FaLaravel,
 } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
@@ -16,61 +17,108 @@ import { SiMysql } from "react-icons/si";
 
 export default function Skills() {
   const skills = [
-    { icon: <FaHtml5 />, name: "HTML5", category: "Frontend" },
-    { icon: <FaCss3Alt />, name: "CSS3", category: "Frontend" },
-    { icon: <RiTailwindCssFill />, name: "Tailwind", category: "Frontend" },
-    { icon: <FaJs />, name: "JavaScript", category: "Frontend" },
-    { icon: <FaReact />, name: "React", category: "Frontend" },
-    { icon: <RiNextjsFill />, name: "Next.js", category: "Frontend" },
-    { icon: <TbBrandFramerMotion />, name: "Framer Motion", category: "Frontend" },
-    { icon: <FaFigma />, name: "Figma", category: "Design" },
-    { icon: <FaPhp />, name: "PHP", category: "Backend" },
-    { icon: <SiMysql />, name: "MySQL", category: "Backend" },
-    { icon: <FaLaravel />, name: "Laravel", category: "Backend" },
+    {
+      icon: <FaFigma className="w-8 h-8 text-red-500" />,
+      name: "Figma",
+      description: "Design Tool",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaReact className="w-8 h-8 text-[#61DAFB]" />,
+      name: "React",
+      description: "JavaScript Library",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <RiNextjsFill className="w-8 h-8 text-white" />,
+      name: "NextJS",
+      description: "React framework",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <RiTailwindCssFill className="w-8 h-8 text-[#06B6D4]" />,
+      name: "Tailwind",
+      description: "CSS framework",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaJs className="w-8 h-8 text-[#F7DF1E]" />,
+      name: "JavaScript",
+      description: "Programming Language",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaHtml5 className="w-8 h-8 text-[#E34F26]" />,
+      name: "HTML5",
+      description: "Markup Language",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaCss3Alt className="w-8 h-8 text-[#1572B6]" />,
+      name: "CSS3",
+      description: "Styling Language",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <TbBrandFramerMotion className="w-8 h-8 text-[#FF0050]" />,
+      name: "Framer Motion",
+      description: "Animation Library",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaPhp className="w-8 h-8 text-[#777BB4]" />,
+      name: "PHP",
+      description: "Server-side Language",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <SiMysql className="w-8 h-8 text-[#4479A1]" />,
+      name: "MySQL",
+      description: "Relational Database",
+      bgColor: "bg-[#1E1E1E]",
+    },
+    {
+      icon: <FaLaravel className="w-8 h-8 text-[#FF2D20]" />,
+      name: "Laravel",
+      description: "PHP Framework",
+      bgColor: "bg-[#1E1E1E]",
+    },
   ];
 
   return (
-    <section className="relative py-20 px-4 bg-black" id="skills">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-900/80 to-black/80"></div>
-      </div>
+    <section className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-5xl font-bold text-start mb-16 tracking-tight">
+          Current technologies
+        </h2>
 
-      <div className="relative max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700 mb-4">
-            My Toolkit
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Technologies I use to bring ideas to life
-          </p>
-        </motion.div>
-
-        {/* Skills grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              whileHover={{ y: -10, scale: 1.05, transition: { duration: 0.3 } }}
-              className="group relative p-6 rounded-xl bg-gray-900 border border-gray-800 flex flex-col items-center transition-all"
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c] transition-all duration-300"
             >
-              <div className="text-4xl mb-3 text-red-500 group-hover:text-white transition-colors">
-                {skill.icon}
-              </div>
-              <h3 className="text-lg font-medium text-white select-none cursor-default text-center">{skill.name}</h3>
-              <span className="text-xs text-gray-400 mt-1 select-none cursor-default">{skill.category}</span>
+              <div className="flex items-center gap-5 p-3">
+                <div
+                  className={`size-14 rounded-xl flex items-center justify-center 
+                              ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
+                >
+                  {skill.icon}
+                </div>
 
-              {/* Glow effect */}
-              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent rounded-xl"></div>
+                {/* Text */}
+                <div>
+                  <h3 className="text-lg font-semibold text-white">
+                    {skill.name}
+                  </h3>
+                  <p className="text-sm text-gray-400">
+                    {skill.description}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
