@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 
+export const socialLinks = [
+    { icon: <FaGithub />, href: "https://github.com/XtremeThaqi" },
+    { icon: <RiTwitterXFill />, href: "https://x.com/erblinthaq44084" },
+    { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/erblinthaqi" },
+    { icon: <FaInstagram />, href: "https://instagram.com/thaqiierblin/" },
+];
 
 export default function Home() {
-    const socialLinks = [
-        { icon: <FaGithub />, href: "https://github.com/XtremeThaqi" },
-        { icon: <RiTwitterXFill />, href: "https://x.com/erblinthaq44084" },
-        { icon: <FaLinkedinIn />, href: "https://linkedin.com/in/erblinthaqi" },
-        { icon: <FaInstagram />, href: "https://instagram.com/thaqiierblin/" },
-    ];
     
     return (
         <section id="home" className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black flex items-center justify-center px-5 sm:px-8 overflow-hidden mx-auto">
