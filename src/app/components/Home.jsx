@@ -13,8 +13,6 @@ export const socialLinks = [
 ];
 
 export default function Home() {
-
-
     return (
         <section id="home" className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black flex items-center justify-center px-5 sm:px-8 overflow-hidden mx-auto">
             <div className="z-10 max-w-6xl pt-28">
