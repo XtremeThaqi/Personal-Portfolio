@@ -92,22 +92,15 @@ export default function Skills() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
           className="mb-10 space-y-4"
         >
-          <motion.h2
-
-            className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold text-start tracking-wide"
-          >
+          <h2 className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold text-start tracking-wide">
             Current technologies
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]"
-          >
-            I'm proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.           
-          </motion.p>
+          </h2>
+          <p className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]">
+            I'm proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -118,7 +111,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c] transition-all duration-300"
+              className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c] "
             >
               <div className="flex items-center gap-5 p-3">
                 <div className={`size-14 rounded-xl flex items-center justify-center ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
