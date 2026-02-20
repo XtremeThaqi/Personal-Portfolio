@@ -12,19 +12,19 @@ export default function Projects() {
     {
       title: "BLINI Restaurant",
       image: img1,
-      technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
+      technologies: ["Next.js", "Framer Motion", "TailwindCSS"],
       link: "https://blini.netlify.app",
     },
     {
       title: "QuickTasks",
       image: img2,
-      technologies: ["Next.js", "Tailwind CSS"],
+      technologies: ["Next.js", "TailwindCSS"],
       link: "https://quicktaskss.netlify.app",
     },
     {
-      title: "TechBit News",
+      title: "TechInsights",
       image: img4,
-      technologies: ["HTML", "JavaScript", "Tailwind CSS"],
+      technologies: ["HTML", "JavaScript", "TailwindCSS"],
       link: "https://erblinthaqi-tech.netlify.app",
     },
   ];
@@ -32,11 +32,11 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative min-h-screen bg-[#0a0a0a] py-24 sm:py-32 px-5 sm:px-8 overflow-hidden"
+      className="relative min-h-screen bg-[#0a0a0a] py-32 px-5 sm:px-8 overflow-hidden"
     >
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-8">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,12 +44,12 @@ export default function Projects() {
             transition={{ duration: 1 }}
             className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold text-start tracking-wide text-stone-200"
           >
-            My Projects
+            My portfolio
           </motion.h2>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-4 mt-8">
+        <div className="grid lg:grid-cols-2 gap-5">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -57,43 +57,36 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: index * 0.15 }}
-              className="group bg-[#151515] rounded-3xl overflow-hidden shadow-lg"
+              className="bg-[#151515] rounded-xl overflow-hidden"
             >
-
-              <div className="rounded-lg p-4 sm:p-8 space-y-8">
-                <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-zinc-800/80 ">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="group rounded-xl p-4 sm:p-8 space-y-8">
+                <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-zinc-800/80">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
+                    </div>
+                  </a>
                 </div>
               </div>
 
               {/* Text below */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-end px-10 sm:px-5 py-5 gap-5 justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-end px-5 sm:px-10 pb-8 gap-5 justify-between">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-white">
                     {project.title}
                   </h3>
-
-                  <p className="text-base sm:text-lg text-zinc-400 leading-relaxed max-w-xl mx-auto">
-                    {project.description}
-                  </p>
 
                   {/* Tech badges */}
                   <div className="flex flex-wrap justify-center gap-3 pt-4">
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="
-                        px-4 py-2 text-xs sm:text-sm font-medium
-                        bg-zinc-900/70 text-zinc-300 rounded-xl
-                        border border-zinc-800/50
-                      "
+                        className="px-4 py-2 text-xs sm:text-sm font-medium bg-zinc-900/90 text-zinc-300 rounded-xl border border-zinc-800/50"
                       >
                         {tech}
                       </span>
@@ -123,7 +116,7 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 }
