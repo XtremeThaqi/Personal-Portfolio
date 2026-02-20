@@ -1,308 +1,225 @@
 "use client";
 
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiUser, FiMail, FiMessageSquare, FiSend } from "react-icons/fi";
 import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const form = useRef(null);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-
-  const [errors, setErrors] = useState({
-    name: false,
-    email: false,
-    message: false,
-  });
-
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const validateField = (name, value) => {
-    switch (name) {
-      case "name":
-        return /^[a-zA-Z\s]*$/.test(value) && value.trim().length >= 2;
-      case "email":
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      case "message":
-        return value.trim().length >= 10;
-      default:
-        return true;
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2 || !/^[a-zA-Z\s]+$/.test(formData.name)) {
+      newErrors.name = "Please enter a valid name (min 2 letters)";
     }
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error on change
     setErrors((prev) => ({ ...prev, [name]: false }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setIsSubmitting(true);
-
-    const newErrors = {
-      name: !validateField("name", formData.name),
-      email: !validateField("email", formData.email),
-      message: !validateField("message", formData.message),
-    };
-
-    setErrors(newErrors);
-
-    const hasErrors = Object.values(newErrors).some((error) => error);
-
-    if (!hasErrors && form.current) {
-      try {
-        await emailjs.sendForm(
-          "service_x7ad9n2",
-          "template_dtq8b0u",
-          form.current,
-          "D8iqse_Hvt9TS8Tcs"
-        );
-
-        setIsSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setIsSuccess(false), 5000);
-      } catch (error) {
-        console.error("EmailJS failed:", error);
-      }
+    try {
+      await emailjs.sendForm(
+        "service_x7ad9n2",
+        "template_dtq8b0u",
+        form.current,
+        "D8iqse_Hvt9TS8Tcs"
+      );
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setIsSuccess(false), 6000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
   };
 
   return (
     <section
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-20 px-4"
       id="contact"
+      className="relative min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 py-32 px-5 sm:px-8 overflow-hidden flex items-center"
     >
-      <div className="max-w-2xl mx-auto">
+
+      <div className="relative z-10 max-w-5xl w-full mx-auto">
+        {/* Floating badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.9 }}
+          className="flex justify-center items-center gap-3 max-w-fit mx-auto mb-10 px-6 py-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-700/50 rounded-full text-base text-zinc-300 font-medium shadow-md"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-600 mb-4">
-            Get In Touch
-          </h2>
-          <p className="text-lg text-gray-400">
-            Have a project in mind or want to chat? Send me a message.
-          </p>
+          <span className="text-2xl">✉️</span>
+          Like what you see? Let's chat about your project!
         </motion.div>
 
-        <motion.form
-          ref={form}
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 50 }}
+        {/* Main form container */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="bg-gray-900 p-8 rounded-xl border border-gray-800 shadow-lg"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="
+            bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50
+            rounded-3xl p-8 sm:p-12 shadow-2xl max-w-3xl mx-auto
+          "
         >
-          <div className="space-y-6">
-            {/* Name Field */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-400 mb-2"
-              >
-                Your Name
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiUser className="h-5 w-5 text-gray-500" />
+          <form ref={form} onSubmit={handleSubmit} className="space-y-8">
+            {/* Name + Email in one row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Name */}
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-sm font-medium text-zinc-400">
+                  Your Name
+                </label>
+                <div className="relative">
+                  <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xl pointer-events-none" />
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full pl-12 pr-4 py-4 outline-none bg-zinc-950/50 border ${errors.name ? "border-red-600" : "border-zinc-800"} text-white placeholder-zinc-500 rounded-xl focus:outline-none focus:border-rose-500 transition-all`}
+                    placeholder="Erblin Thaqi"
+                  />
                 </div>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={() =>
-                    setErrors((prev) => ({
-                      ...prev,
-                      name: !validateField("name", formData.name),
-                    }))
-                  }
-                  className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${
-                    errors.name ? "border-red-500" : "border-gray-700"
-                  } text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
-                  placeholder="John Doe"
-                />
+                {errors.name && <p className="text-sm text-red-400 mt-1">{errors.name}</p>}
               </div>
-              {errors.name && (
-                <p className="mt-2 text-sm text-red-500">
-                  Please enter a valid name (letters and spaces only, min 2 chars)
-                </p>
-              )}
+
+              {/* Email */}
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-medium text-zinc-400">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 text-xl pointer-events-none" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full pl-12 pr-4 py-4 outline-none bg-zinc-950/50 border ${errors.email ? "border-red-600" : "border-zinc-800"} text-white placeholder-zinc-500 rounded-xl focus:outline-none focus:border-rose-500 transition-all`}
+                    placeholder="you@example.com"
+                  />
+                </div>
+                {errors.email && <p className="text-sm text-red-400 mt-1">{errors.email}</p>}
+              </div>
             </div>
 
-            {/* Email Field */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-400 mb-2"
-              >
-                Email Address
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiMail className="h-5 w-5 text-gray-500" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={() =>
-                    setErrors((prev) => ({
-                      ...prev,
-                      email: !validateField("email", formData.email),
-                    }))
-                  }
-                  className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${
-                    errors.email ? "border-red-500" : "border-gray-700"
-                  } text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all`}
-                  placeholder="you@example.com"
-                />
-              </div>
-              {errors.email && (
-                <p className="mt-2 text-sm text-red-500">
-                  Please enter a valid email address
-                </p>
-              )}
-            </div>
-
-            {/* Message Field */}
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-400 mb-2"
-              >
+            {/* Message below */}
+            <div className="space-y-2">
+              <label htmlFor="message" className="block text-sm font-medium text-zinc-400">
                 Your Message
               </label>
               <div className="relative">
-                <div className="absolute top-3 left-3 pointer-events-none">
-                  <FiMessageSquare className="h-5 w-5 text-gray-500" />
-                </div>
+                <FiMessageSquare className="absolute top-5 left-4 text-zinc-500 text-xl pointer-events-none" />
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  onBlur={() =>
-                    setErrors((prev) => ({
-                      ...prev,
-                      message: !validateField("message", formData.message),
-                    }))
-                  }
-                  className={`pl-10 w-full px-4 py-3 rounded-lg bg-gray-800 border ${
-                    errors.message ? "border-red-500" : "border-gray-700"
-                  } text-white placeholder-gray-500 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all resize-y min-h-[120px]`}
+                  className={`w-full pl-12 pr-4 py-4 outline-none bg-zinc-950/50 border ${errors.message ? "border-red-600" : "border-zinc-800"} text-white placeholder-zinc-500 rounded-xl focus:outline-none focus:border-rose-500 transition-all resize-none`}
                   placeholder="Tell me about your project..."
                 />
               </div>
-              {errors.message && (
-                <p className="mt-2 text-sm text-red-500">
-                  Message must be at least 10 characters
-                </p>
-              )}
+              {errors.message && <p className="text-sm text-red-400 mt-1">{errors.message}</p>}
             </div>
 
-            {/* Hidden fields for EmailJS */}
-            <input type="hidden" name="from_name" value={formData.name} />
-            <input type="hidden" name="from_email" value={formData.email} />
-
+            {/* Submit button */}
             <motion.button
               type="submit"
+              disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              disabled={isSubmitting}
-              className={`w-full py-3 px-6 bg-gradient-to-r from-red-600 to-red-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 ${
-                isSubmitting
-                  ? "opacity-80 cursor-not-allowed"
-                  : "hover:shadow-red-500/20 hover:shadow-lg"
-              } transition-all`}
+              className={`w-full py-4 px-8 mt-4 rounded-lg font-medium text-lg ${isSubmitting
+                ? "bg-zinc-800 text-zinc-500 cursor-not-allowed"
+                : "bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-rose-500/30"}
+              shadow-lg transition-all flex items-center justify-center gap-3`}
             >
               {isSubmitting ? (
                 <>
-                  <svg
-                    className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    />
+                  <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
                   Sending...
                 </>
               ) : (
                 <>
-                  <FiSend className="h-5 w-5" />
+                  <FiSend className="text-xl" />
                   Send Message
                 </>
               )}
             </motion.button>
-          </div>
-        </motion.form>
+          </form>
+        </motion.div>
 
+        {/* Success modal */}
         {isSuccess && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-gray-900 p-8 rounded-xl border border-gray-800 max-w-md w-full text-center shadow-xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 15 }}
+              className="
+                bg-zinc-900/95 backdrop-blur-xl border border-zinc-800/50
+                rounded-3xl p-10 max-w-md w-full text-center shadow-2xl
+              "
             >
-              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-900/20 text-red-500 border border-red-900/50 mb-4">
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
+              <div className="mx-auto w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
+                <svg className="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-medium text-white mb-2">
-                Message Sent!
-              </h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
+              <p className="text-zinc-400 mb-8">
                 Thank you for reaching out. I'll get back to you soon.
               </p>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSuccess(false)}
-                className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-2xl transition-all"
               >
                 Close
-              </button>
+              </motion.button>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
