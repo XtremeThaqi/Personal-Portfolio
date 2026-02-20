@@ -34,7 +34,6 @@ export default function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error on change
     setErrors((prev) => ({ ...prev, [name]: false }));
   };
 
@@ -65,7 +64,6 @@ export default function Contact() {
       id="contact"
       className="relative min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 py-32 px-5 sm:px-8 overflow-hidden flex items-center"
     >
-
       <div className="relative z-10 max-w-5xl w-full mx-auto">
         {/* Floating badge */}
         <motion.div
@@ -87,10 +85,10 @@ export default function Contact() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="
             bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50
-            rounded-3xl p-8 sm:p-12 shadow-2xl max-w-3xl mx-auto
+            rounded-xl p-8 sm:p-12 shadow-2xl max-w-3xl mx-auto
           "
         >
-          <form ref={form} onSubmit={handleSubmit} className="space-y-8">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-7">
             {/* Name + Email in one row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
@@ -158,12 +156,11 @@ export default function Contact() {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={`w-full py-4 px-8 mt-4 rounded-lg font-medium text-lg ${isSubmitting
                 ? "bg-zinc-800 text-zinc-500 cursor-not-allowed"
-                : "bg-gradient-to-r from-rose-600 to-rose-700 text-white hover:shadow-rose-500/30"}
-              shadow-lg transition-all flex items-center justify-center gap-3`}
+                : "border border-[#1f1f1f] text-white font-medium rounded-2xl text-lg transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40 text-center"}
+               transition-all flex items-center justify-center gap-3`}
             >
               {isSubmitting ? (
                 <>
@@ -183,7 +180,6 @@ export default function Contact() {
           </form>
         </motion.div>
 
-        {/* Success modal */}
         {isSuccess && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -202,8 +198,17 @@ export default function Contact() {
               "
             >
               <div className="mx-auto w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
-                <svg className="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-10 w-10 text-green-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2} d="M5 13l4 4L19 7"
+                  />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
