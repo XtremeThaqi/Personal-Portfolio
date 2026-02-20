@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import img1 from "./images/img1.png"; // BLINI Restaurant App
-import img2 from "./images/img2.png"; // QuickTasks To-Do App
+import img2 from "./images/img2.png"; // TaskFlow Python Task Manager
 import img4 from "./images/img4.png"; // TechBit News Portal
 
 export default function Projects() {
@@ -16,10 +16,10 @@ export default function Projects() {
       link: "https://blini.netlify.app",
     },
     {
-      title: "QuickTasks",
+      title: "TaskFlow",
       image: img2,
-      technologies: ["Next.js", "TailwindCSS"],
-      link: "https://quicktaskss.netlify.app",
+      technologies: ["Python", "Tkinter"],
+      link: "https://github.com/XtremeThaqi/taskflow",
     },
     {
       title: "TechInsights",
