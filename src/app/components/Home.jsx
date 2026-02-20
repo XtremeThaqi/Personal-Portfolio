@@ -81,7 +81,7 @@ export default function Home() {
                                 target={social.href ? "_blank" : undefined}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: false, amount: 0.3 }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                                 className="w-14 h-14 bg-[#141414] border border-[#1f1f1f] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-white hover:border-[#2c2c2c] transition-all duration-300 ease-in-out cursor-pointer"
                             >
