@@ -17,6 +17,25 @@ export default function About() {
         { icon: <TbBrandFramerMotion className="text-2xl text-pink-500" />, name: "Framer Motion" },
     ];
 
+    const expertise = [
+        {
+            icon: <FaCode className="text-4xl text-red-500" />,
+            title: "Frontend",
+            description: "React, Next.js, Tailwind",
+        },
+        {
+            icon: <FaServer className="text-4xl text-red-500" />,
+            title: "Backend",
+            description: "PHP, Laravel",
+            indent: true, // to apply ml-12 on this one
+        },
+        {
+            icon: <FaDatabase className="text-4xl text-red-500" />,
+            title: "Database",
+            description: "MySQL",
+        },
+    ];
+
     return (
         <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -82,7 +101,7 @@ export default function About() {
                             whileTap={{ scale: 0.95 }}
                             href="#contact"
                             viewport={{ once: true }}
-                            className="px-10 py-5 border text-center border-zinc-700 text-white font-medium rounded-2xl hover:bg-zinc-800/50 text-lg"
+                            className="px-10 py-5 border border-[#1f1f1f] text-center text-white font-medium rounded-2xl text-lg transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40"
                         >
                             Contact Me
                         </motion.a>
@@ -99,48 +118,21 @@ export default function About() {
                 >
                     {/* Full-Stack Visualization */}
                     <div className="space-y-12">
-                        <div className="flex items-center gap-6">
-                            <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
-                                <FaCode className="text-4xl text-red-500" />
+                        {expertise.map((item, index) => (
+                            <div
+                                key={index}
+                                className={`flex items-center gap-6 ${item.indent ? "ml-12" : ""}`}
+                            >
+                                <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
+                                    {item.icon}
+                                </div>
+                                <div className="select-none cursor-default">
+                                    <h4 className="text-xl text-white font-medium">{item.title}</h4>
+                                    <p className="text-zinc-400">{item.description}</p>
+                                </div>
                             </div>
-                            <div className="select-none cursor-default">
-                                <h4 className="text-xl text-white font-medium">Frontend</h4>
-                                <p className="text-zinc-400">React, Next.js, Tailwind</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-6 ml-12">
-                            <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
-                                <FaServer className="text-4xl text-red-500" />
-                            </div>
-                            <div className="select-none cursor-default">
-                                <h4 className="text-xl text-white font-medium">Backend</h4>
-                                <p className="text-zinc-400">PHP, Laravel</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-6">
-                            <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
-                                <FaDatabase className="text-4xl text-red-500" />
-                            </div>
-                            <div className="select-none cursor-default">
-                                <h4 className="text-xl text-white font-medium">Database</h4>
-                                <p className="text-zinc-400">MySQL</p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-
-                    {/* Quote */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.6 }}
-                        className="mt-8 p-6 bg-zinc-900/50 backdrop-blur-md border-l-4 border-red-600 rounded-r-lg"
-                    >
-                        <p className="text-lg italic text-zinc-300">
-                            "Confusion is part of programming."
-                        </p>
-                        <p className="text-red-500 mt-2">— Felienne Hermans</p>
-                    </motion.div>
                 </motion.div>
             </div>
         </section>
