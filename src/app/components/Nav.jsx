@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { socialLinks } from './Home';
+import { FiCode, FiHome, FiTool, FiUser } from 'react-icons/fi';
+import { MdMail } from 'react-icons/md';
 
 export default function Nav() {
     const [activeTab, setActiveTab] = useState(1);
@@ -14,6 +16,14 @@ export default function Nav() {
         { id: 3, name: 'Skills', href: '#skills' },
         { id: 4, name: 'Projects', href: '#projects' },
         { id: 5, name: 'Contact', href: '#contact' },
+    ];
+
+    const socialIcons = [
+        { icon: <FiHome />, href: '#home' },
+        { icon: <FiUser />, href: '#about' },
+        { icon: <FiTool />, href: '#skills' },
+        { icon: <FiCode />, href: '#projects' },
+        { icon: <MdMail />, href: '#contact' },
     ];
 
     // Scroll-based active tab detection
@@ -99,7 +109,7 @@ export default function Nav() {
 
                     {/* Mobile icons */}
                     <div className="md:hidden flex items-center gap-6">
-                        {socialLinks.map((social, i) => (
+                        {socialIcons.map((social, i) => (
                             <motion.a
                                 key={i}
                                 href={social.href}
