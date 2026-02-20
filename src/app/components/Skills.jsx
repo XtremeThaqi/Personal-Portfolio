@@ -10,6 +10,7 @@ import {
   FaFigma,
   FaPhp,
   FaLaravel,
+  FaPython,
 } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
@@ -83,6 +84,12 @@ export default function Skills() {
       description: "PHP Framework",
       bgColor: "bg-[#1E1E1E]",
     },
+    {
+      icon: <FaPython className="w-8 h-8 text-[#3776AB]" />,
+      name: "Python",
+      description: "Programming Language",
+      bgColor: "bg-[#1E1E1E]",
+    }
   ];
 
   return (
