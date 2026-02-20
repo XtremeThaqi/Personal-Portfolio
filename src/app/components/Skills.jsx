@@ -88,12 +88,27 @@ export default function Skills() {
   return (
     <section className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-5xl font-bold text-start mb-16 tracking-tight">
-          Current technologies
-        </motion.h2>
+          transition={{ duration: 0.7 }}
+          className="mb-10 space-y-4"
+        >
+          <motion.h2
+
+            className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold text-start tracking-wide"
+          >
+            Current technologies
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]"
+          >
+            I'm proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.           
+          </motion.p>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {skills.map((skill, index) => (
@@ -106,9 +121,7 @@ export default function Skills() {
               className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c] transition-all duration-300"
             >
               <div className="flex items-center gap-5 p-3">
-                <div
-                  className={`size-14 rounded-xl flex items-center justify-center 
-                              ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
+                <div className={`size-14 rounded-xl flex items-center justify-center ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
                 >
                   {skill.icon}
                 </div>
