@@ -4,14 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   FaHtml5,
-  FaCss3Alt,
   FaJs,
   FaReact,
   FaFigma,
   FaPhp,
   FaLaravel,
   FaPython,
-  FaGit,
+  FaGitAlt
 } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
@@ -56,9 +55,9 @@ export default function Skills() {
       bgColor: "bg-[#1E1E1E]",
     },
     {
-      icon: <FaGit className="w-8 h-8 text-[#1572B6]" />,
+      icon: <FaGitAlt className="w-8 h-8 text-[#F1502F]" />,
       name: "Git",
-      description: "Version Control System",
+      description: "Version Control",
       bgColor: "bg-[#1E1E1E]",
     },
     {
