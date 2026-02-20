@@ -4,7 +4,6 @@ import Home from './components/Home';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
-import With from './components/With'
 import Footer from './components/Footer';
 import dynamic from 'next/dynamic';
 const Contact = dynamic(() => import('./components/Contact'), {
@@ -20,7 +19,6 @@ export default function Page() {
       <Skills/>
       <Projects/>
       <Contact/>
-      <With/>
       <Footer/>
     </>
   );
