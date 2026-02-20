@@ -51,30 +51,25 @@ export default function Home() {
 
                 {/* Buttons */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex flex-col sm:flex-row justify-center gap-5 mb-12"
-                >
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col sm:flex-row justify-center gap-5 mb-12">
                     <motion.a
                         href="#contact"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.96 }}
-                        className="px-10 py-4 bg-white text-black font-semibold rounded-2xl flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl text-lg"
+                        className="px-10 py-4 bg-white text-black font-semibold rounded-2xl flex items-center justify-center gap-2 border"
                     >
                         Let's Talk →
                     </motion.a>
 
                     <motion.a
                         href="#projects"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.96 }}
-                        className="px-10 py-5 border text-center border-zinc-700 text-white font-medium rounded-2xl hover:bg-zinc-800/50 text-lg"
+                        className="px-10 py-5 border border-[#1f1f1f] text-white font-medium rounded-2xl text-lg transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40 text-center"
                     >
                         View My Work
                     </motion.a>
                 </motion.div>
 
-                {/* Social icons + Discord popup */}
                 <div className="flex flex-col items-center gap-10">
                     {/* Socials */}
                     <div className="flex gap-6">
@@ -84,12 +79,11 @@ export default function Home() {
                                 href={social.href}
                                 onClick={social.onClick}
                                 target={social.href ? "_blank" : undefined}
-                                whileHover={{ y: -6, scale: 1.15 }}
-                                whileTap={{ scale: 0.9 }}
-                                initial={{ opacity: 0, y: 40 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                className="w-14 h-14 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/50 rounded-2xl flex items-center justify-center text-2xl text-zinc-300 hover:text-white hover:border-zinc-500/70 cursor-pointer"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, amount: 0.3 }}
+                                transition={{ duration: 0.4, delay: i * 0.05 }}
+                                className="w-14 h-14 bg-[#141414] border border-[#1f1f1f] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-white hover:border-[#2c2c2c] transition-all duration-300 ease-in-out cursor-pointer"
                             >
                                 {social.icon}
                             </motion.a>
