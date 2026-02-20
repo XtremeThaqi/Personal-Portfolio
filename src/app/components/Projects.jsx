@@ -82,11 +82,11 @@ export default function Projects() {
                   </h3>
 
                   {/* Tech badges */}
-                  <div className="flex flex-wrap justify-center gap-3 pt-4">
+                  <div className="flex flex-wrap justify-start gap-2 pt-4">
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-4 py-2 text-xs sm:text-sm font-medium bg-zinc-900/90 text-zinc-300 rounded-xl border border-zinc-800/50"
+                        className="px-4 py-2 text-[13px] font-medium bg-[#1c1c1c] border border-[#2c2c2c] text-stone-200 hover:bg-[#1f1f1f] rounded-lg cursor-default transition-colors duration-300"
                       >
                         {tech}
                       </span>
@@ -98,7 +98,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileTap={{ scale: 0.95 }}
-                  className="p-3 flex items-center justify-center bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg transition-all duration-300"
+                  className="p-3 flex items-center justify-center bg-blue-600 hover:bg-blue-700 rounded-xl transition-all duration-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
