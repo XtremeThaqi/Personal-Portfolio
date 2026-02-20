@@ -111,7 +111,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c] "
+              className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c]"
             >
               <div className="flex items-center gap-5 p-3">
                 <div className={`size-14 rounded-xl flex items-center justify-center ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
