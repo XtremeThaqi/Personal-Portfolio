@@ -11,6 +11,7 @@ import {
   FaPhp,
   FaLaravel,
   FaPython,
+  FaGit,
 } from "react-icons/fa";
 import { RiTailwindCssFill, RiNextjsFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
@@ -55,9 +56,9 @@ export default function Skills() {
       bgColor: "bg-[#1E1E1E]",
     },
     {
-      icon: <FaCss3Alt className="w-8 h-8 text-[#1572B6]" />,
-      name: "CSS3",
-      description: "Styling Language",
+      icon: <FaGit className="w-8 h-8 text-[#1572B6]" />,
+      name: "Git",
+      description: "Version Control System",
       bgColor: "bg-[#1E1E1E]",
     },
     {
