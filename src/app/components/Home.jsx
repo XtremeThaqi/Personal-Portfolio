@@ -33,7 +33,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.35, duration: 0.9 }}
-                    className="text-2xl sm:text-3xl text-zinc-400 font-light text-center max-w-3xl mx-auto mb-4"
+                    className="text-2xl sm:text-3xl text-zinc-400 font-light text-center max-w-3xl mx-auto mb-4 tracking-wider"
                 >
                     Full-Stack Developer crafting{" "}
                     <span className="text-red-500 font-medium">digital</span> experiences
@@ -44,7 +44,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.9 }}
-                    className="text-lg text-zinc-500 text-center max-w-3xl mx-auto leading-relaxed mb-12"
+                    className="text-lg text-zinc-500 text-center max-w-3xl mx-auto leading-relaxed mb-12 tracking-tight"
                 >
                     I build fast, beautiful, and scalable web applications. From idea to production — clean code,
                     pixel-perfect UI, and powerful backends.
@@ -63,8 +63,7 @@ export default function Home() {
                         Let's Talk →
                     </motion.a>
 
-                    <motion.a
-                        href="#projects"
+                    <motion.a href="#projects"
                         className="px-10 py-5 border border-[#1f1f1f] text-white font-medium rounded-2xl text-lg transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40 text-center"
                     >
                         View My Work
@@ -83,8 +82,8 @@ export default function Home() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: i * 0.05 }}
-                                className="w-14 h-14 bg-[#141414] border border-[#1f1f1f] rounded-2xl flex items-center justify-center text-2xl text-gray-400 hover:text-white hover:border-[#2c2c2c] transition-all duration-300 ease-in-out cursor-pointer"
+                                whileHover={{ color: "#ffffff", borderColor: "#2c2c2c" }}
+                                className="w-14 h-14 bg-[#141414] border border-[#1f1f1f] rounded-2xl flex items-center justify-center text-2xl text-gray-400 cursor-pointer"
                             >
                                 {social.icon}
                             </motion.a>
