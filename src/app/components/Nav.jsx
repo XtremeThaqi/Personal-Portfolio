@@ -32,7 +32,7 @@ export default function Nav() {
             className="fixed top-0 left-0 right-0 p-6 bg-transparent z-50 pointer-events-none overflow-hidden">
             <div className="flex justify-center pointer-events-auto">
                 {/* Main container */}
-                <div className="relative flex items-center justify-center gap-6 sm:gap-10 md:gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-12 py-3 md:py-4 border-zinc-700 bg-zinc-900/70 backdrop-blur-md border rounded-2xl max-w-full md:max-w-5xl mx-auto overflow-hidden">
+                <div className="relative flex items-center justify-center gap-6 sm:gap-10 md:gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-12 py-3 md:py-4 border-[#2c2c2c] bg-zinc-900/70 backdrop-blur-md border rounded-2xl max-w-full md:max-w-5xl mx-auto overflow-hidden">
                     <div className="hidden md:flex items-center gap-10 lg:gap-14">
                         {navData.map((item) => (
                             <motion.a
@@ -45,9 +45,9 @@ export default function Nav() {
                                 {activeTab === item.id && (
                                     <motion.div
                                         layoutId="activeTabUnderline"
-                                        className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-white/70 rounded-full"
+                                        className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-white/80 rounded-full"
                                         initial={false}
-                                        transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 40 }}
                                     />
                                 )}
                             </motion.a>
