@@ -63,7 +63,7 @@ export default function Home() {
                     </motion.a>
 
                     <motion.a href="#projects"
-                        className="px-10 py-5 border border-[#1f1f1f] text-white font-medium rounded-2xl text-lg transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40 text-center"
+                        className="px-10 py-4 border border-[#1f1f1f] text-white font-medium rounded-2xl  transition-all duration-300 ease-in-out bg-[#141414] hover:border-[#2c2c2c] hover:bg-zinc-800/40 text-center"
                     >
                         View My Work
                     </motion.a>
