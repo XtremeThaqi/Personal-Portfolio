@@ -4,8 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import img1 from "./images/img1.png"; // BLINI Restaurant App
-import img2 from "./images/img2.png"; // TaskFlow Python Task Manager
-import img4 from "./images/img4.png"; // TechBit News Portal
+import img2 from "./images/img2.jpg"; // TaskFlow Python Task Manager
+import img4 from "./images/img4.jpg"; // TechBit News Portal
 
 export default function Projects() {
   const projects = [
@@ -60,7 +60,7 @@ export default function Projects() {
               className="bg-[#151515] rounded-xl overflow-hidden"
             >
               <div className="group rounded-xl p-4 sm:p-8 space-y-8">
-                <div className="relative rounded-xl overflow-hidden aspect-[16/9] border border-zinc-800/80">
+                <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-zinc-800/80">
                   <a href={project.link} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
                     <Image
                       src={project.image}
