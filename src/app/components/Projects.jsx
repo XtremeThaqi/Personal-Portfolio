@@ -19,7 +19,7 @@ export default function Projects() {
       title: "TaskFlow",
       image: img2,
       technologies: ["Python", "Tkinter"],
-      link: "https://github.com/XtremeThaqi/taskflow/blob/main/dist/TaskFlow.exe",
+      link: "https://github.com/XtremeThaqi/taskflow/tree/main",
     },
     {
       title: "TechInsights",
