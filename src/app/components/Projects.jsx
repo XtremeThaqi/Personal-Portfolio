@@ -75,13 +75,18 @@ export default function Projects() {
               variants={cardEntrance}
               initial={shouldReduceMotion ? false : "hidden"}
               whileInView="visible"
+              whileHover={{ scale: 1.012 }}
               viewport={{ once: true, amount: 0.12 }}
               transition={{
                 duration: shouldReduceMotion ? 0 : 0.5,
                 delay: shouldReduceMotion ? 0 : index * 0.08,
                 ease: [0.22, 1, 0.36, 1],
+                scale: {
+                  duration: shouldReduceMotion ? 0 : 0.25,
+                  ease: [0.22, 1, 0.36, 1],
+                },
               }}
-              className="group relative isolate flex h-full min-w-0 flex-col overflow-hidden rounded-[1.4rem] border border-white/[0.09] bg-[#111111] shadow-[0_18px_50px_-32px_rgba(0,0,0,0.95)] transition-[transform,border-color,box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.012] hover:border-red-500/45 hover:bg-[#131313] hover:shadow-[0_26px_70px_-38px_rgba(220,38,38,0.32)] focus-within:border-red-500/50 motion-reduce:transform-none motion-reduce:transition-none md:last:col-span-2 md:last:w-[calc((100%_-_1.5rem)/2)] md:last:justify-self-center lg:last:col-span-1 lg:last:w-auto"
+              className="group relative isolate flex h-full min-w-0 flex-col overflow-hidden rounded-[1.4rem] border border-white/[0.09] bg-[#111111] shadow-[0_18px_50px_-32px_rgba(0,0,0,0.95)] transition-[border-color,box-shadow,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-red-500/45 hover:bg-[#131313] hover:shadow-[0_26px_70px_-38px_rgba(220,38,38,0.32)] focus-within:border-red-500/50 motion-reduce:!transform-none motion-reduce:transition-none md:last:col-span-2 md:last:w-[calc((100%_-_1.5rem)/2)] md:last:justify-self-center lg:last:col-span-1 lg:last:w-auto"
             >
               <div className="p-3 pb-0">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[1rem] bg-[#0b0b0b] ring-1 ring-inset ring-white/[0.08]">
