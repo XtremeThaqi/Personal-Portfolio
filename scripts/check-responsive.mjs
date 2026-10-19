@@ -119,15 +119,6 @@ try {
       await page.locator("#projects").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/projects-${width}.png` });
-      if ([375, 768, 1440].includes(width)) {
-        const visualBuffer = await page.locator("#projects").screenshot({ type: "jpeg", quality: 58 });
-        const visualBase64 = visualBuffer.toString("base64");
-        const visualChunkSize = 12000;
-        const visualParts = Math.ceil(visualBase64.length / visualChunkSize);
-        for (let visualIndex = 0; visualIndex < visualParts; visualIndex += 1) {
-          console.log("VISUAL_CHUNK:" + width + ":" + visualIndex + ":" + visualParts + ":" + visualBase64.slice(visualIndex * visualChunkSize, (visualIndex + 1) * visualChunkSize));
-        }
-      }
       for (const id of ["about", "skills", "contact"]) {
         await page.locator("#" + id).evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
         await pause(200);
