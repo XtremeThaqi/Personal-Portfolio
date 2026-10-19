@@ -27,7 +27,7 @@ export default function Nav() {
       // Use page positions, not navigation order: Work appears before About.
       const sections = navigation.map(({ id }) => document.getElementById(id)).filter(Boolean)
         .sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
-      const line = (nav.current?.getBoundingClientRect().bottom ?? 100) + 24;
+      const line = (nav.current ? nav.current.offsetTop + nav.current.offsetHeight : 100) + 24;
       const current = sections.filter((section) => section.getBoundingClientRect().top <= line).at(-1);
       const atBottom = window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
       setActiveTab(atBottom ? sections.at(-1)?.id ?? "home" : current?.id ?? "home");

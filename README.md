@@ -21,6 +21,8 @@ npm run build
 npm start
 ```
 
+Next.js and its ESLint configuration are pinned to 16.4.2, with PostCSS 8.5.31, to address dependency advisories found during validation. The existing Tailwind 3 and React architecture is retained.
+
 The build needs access to Google's font servers for the existing Inter font. ESLint uses `eslint.config.mjs`; no extra runtime libraries were added.
 
 ## Content and navigation

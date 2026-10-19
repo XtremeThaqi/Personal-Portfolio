@@ -195,7 +195,9 @@ try {
     const animated = await browser.newPage({ reducedMotion: "no-preference" });
     await animated.goto(origin);
     await animated.getByRole("navigation").getByRole("link", { name: "Work", exact: true }).click();
-    await waitFor(async () => (await animated.getByRole("navigation").getByRole("link", { name: "Work", exact: true }).getAttribute("aria-current")) === "location", "Smooth scrolling should settle on Work");
+    await waitFor(async () => (await animated.getByRole("navigation").getByRole("link", { name: "Work", exact: true }).getAttribute("aria-current")) === "location", "Smooth scrolling should settle on Work").catch(async (error) => {
+      throw new Error(error.message + "; " + JSON.stringify(await animated.evaluate(() => ({ hash: location.hash, scrollY, navHeight: document.querySelector("nav").offsetHeight, active: document.querySelector("nav a[aria-current]")?.getAttribute("href"), projectsTop: document.querySelector("#projects").getBoundingClientRect().top }))));
+    });
     await pause(1000);
     await animated.screenshot({ path: "artifacts/responsive/desktop-motion.png" });
     await animated.close();
