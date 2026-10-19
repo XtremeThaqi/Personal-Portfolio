@@ -23,8 +23,8 @@ export default function Footer() {
                         <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-red-600 tracking-tight">
                             Erblin Thaqi
                         </h2>
-                        <p className="mt-2 text-sm sm:text-base text-zinc-400 font-light">
-                            Full-Stack Developer • Based in Kosovo
+                        <p className="mt-2 text-sm sm:text-base text-zinc-500 font-light">
+                            Full-Stack Developer • Crafting digital experiences
                         </p>
                     </motion.div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom section: Copyright + Back to top */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm text-zinc-400 border-t border-zinc-800/50 pt-8">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm text-zinc-500 border-t border-zinc-800/50 pt-8">
                     <p>
                         © {new Date().getFullYear()} Erblin Thaqi. All rights reserved.
                     </p>
@@ -64,7 +64,7 @@ export default function Footer() {
                         className="flex items-center gap-2 px-5 py-2 bg-zinc-900/70 backdrop-blur-md border-zinc-800/50 justify-center text-sm border border-[#1f1f1f] text-white font-medium rounded-2xl hover:border-[#2c2c2c] hover:bg-zinc-800/40"
                     >
                         Back to Top
-                        <FaArrowUp aria-hidden="true" className="text-rose-500 h-4 w-4" />
+                        <FaArrowUp className="text-rose-500 h-4 w-4" />
                     </motion.a>
                 </div>
             </div>

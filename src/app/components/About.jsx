@@ -37,7 +37,7 @@ export default function About() {
     ];
 
     return (
-        <section tabIndex={-1} className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
+        <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className="space-y-8">
@@ -67,23 +67,22 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            I&apos;m <span className="font-bold">Erblin Thaqi</span>, a full-stack developer from Kosovo.
-                            I enjoy connecting the interface people use with the logic and data behind it.
+                            Hi there! I'm <span className="font-bold">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo.
+                            I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
                         </p>
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            My projects have taught me to build responsive interfaces, structure backend routes,
-                            and work with database-backed accounts, product catalogs, and shopping carts.
-                            I&apos;m also learning web application security, with a focus on input validation and access control.
+                            I create responsive interfaces while implementing robust server-side functionality.
+                            My approach combines creative problem-solving with clean, efficient code.
                         </p>
                         <div className="flex flex-wrap gap-4 mt-6">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={index}
-                                    whileHover={{ scale: 1.03 }}
+                                    whileHover={{ y: -5 }}
                                     viewport={{ once: true }}
                                     className="select-none cursor-default flex items-center gap-2 px-4 py-2 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-lg"
                                 >
-                                    <span aria-hidden="true">{skill.icon}</span>
+                                    {skill.icon}
                                     <span className="text-zinc-200">{skill.name}</span>
                                 </motion.div>
                             ))}
@@ -124,7 +123,7 @@ export default function About() {
                                 key={index}
                                 className={`flex items-center gap-6 ${item.indent ? "ml-12" : ""}`}
                             >
-                                <div aria-hidden="true" className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
+                                <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
                                     {item.icon}
                                 </div>
                                 <div className="select-none cursor-default">

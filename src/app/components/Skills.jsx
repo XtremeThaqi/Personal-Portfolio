@@ -93,7 +93,7 @@ export default function Skills() {
   ];
 
   return (
-    <section tabIndex={-1} className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
+    <section className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -106,7 +106,7 @@ export default function Skills() {
             Current technologies
           </h2>
           <p className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]">
-            Tools I use across my web and desktop projects.
+            I'm proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.
           </p>
         </motion.div>
 
@@ -121,7 +121,7 @@ export default function Skills() {
               className="group relative rounded-2xl border border-[#1f1f1f] bg-gradient-to-b from-[#141414] to-[#0f0f0f] hover:border-[#2c2c2c]"
             >
               <div className="flex items-center gap-5 p-3">
-                <div aria-hidden="true" className={`size-14 rounded-xl flex items-center justify-center ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
+                <div className={`size-14 rounded-xl flex items-center justify-center ${skill.bgColor} border border-[#2a2a2a] group-hover:border-[#3a3a3a] transition-all duration-300`}
                 >
                   {skill.icon}
                 </div>
