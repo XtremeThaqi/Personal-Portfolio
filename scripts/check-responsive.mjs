@@ -14,11 +14,6 @@ let browser;
 const preview = process.argv.includes("--preview");
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function reviewImage(label, bytes, mime = "image/jpeg") {
-  const parts = bytes.toString("base64").match(/.{1,40000}/g) ?? [];
-  parts.forEach((data, index) => console.log("QA_IMAGE:" + JSON.stringify({ label, mime, index, data })));
-}
-
 async function waitFor(check, message) {
   for (let attempt = 0; attempt < 40; attempt++) {
     if (await check()) return;
@@ -65,7 +60,6 @@ try {
       const png = Buffer.from(await asset.arrayBuffer());
       assert.equal(png.readUInt32BE(16), width);
       assert.equal(png.readUInt32BE(20), height);
-      if (width === 1200) reviewImage("sharing-preview", png, "image/png");
     }
     assert((await fetch(origin + "/icon.svg")).ok);
     await mkdir("artifacts/responsive", { recursive: true });
@@ -117,12 +111,10 @@ try {
       await page.locator("#projects").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/projects-${width}.png` });
-      if (width === 375 || width === 1440) reviewImage("projects-" + width, await page.screenshot({ type: "jpeg", quality: 35 }));
       for (const id of ["about", "skills", "contact"]) {
         await page.locator("#" + id).evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
         await pause(200);
       }
-      if (width === 375) reviewImage("contact-375", await page.screenshot({ type: "jpeg", quality: 35 }));
       for (const label of ["Your Name", "Email Address", "Your Message"]) {
         assert.equal(await page.getByLabel(label, { exact: true }).count(), 1);
       }
@@ -142,7 +134,6 @@ try {
       await page.getByRole("navigation").getByRole("link", { name: "Home", exact: true }).click();
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/home-${width}.png`, fullPage: true });
-      if (width === 375 || width === 1440) reviewImage("home-" + width, await page.screenshot({ type: "jpeg", quality: 35 }));
       assert.deepEqual(runtimeErrors, [], "No console or hydration errors");
       console.log("PASS: content, metadata, navigation, keyboard, images, console and layout at " + width + "px");
       await page.close();

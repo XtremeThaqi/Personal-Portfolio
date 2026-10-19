@@ -83,7 +83,7 @@ export default function About() {
                                     viewport={{ once: true }}
                                     className="select-none cursor-default flex items-center gap-2 px-4 py-2 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-lg"
                                 >
-                                    {skill.icon}
+                                    <span aria-hidden="true">{skill.icon}</span>
                                     <span className="text-zinc-200">{skill.name}</span>
                                 </motion.div>
                             ))}
@@ -124,7 +124,7 @@ export default function About() {
                                 key={index}
                                 className={`flex items-center gap-6 ${item.indent ? "ml-12" : ""}`}
                             >
-                                <div className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
+                                <div aria-hidden="true" className="p-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-xl shadow-lg">
                                     {item.icon}
                                 </div>
                                 <div className="select-none cursor-default">

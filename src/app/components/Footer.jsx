@@ -64,7 +64,7 @@ export default function Footer() {
                         className="flex items-center gap-2 px-5 py-2 bg-zinc-900/70 backdrop-blur-md border-zinc-800/50 justify-center text-sm border border-[#1f1f1f] text-white font-medium rounded-2xl hover:border-[#2c2c2c] hover:bg-zinc-800/40"
                     >
                         Back to Top
-                        <FaArrowUp className="text-rose-500 h-4 w-4" />
+                        <FaArrowUp aria-hidden="true" className="text-rose-500 h-4 w-4" />
                     </motion.a>
                 </div>
             </div>

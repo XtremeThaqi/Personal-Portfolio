@@ -31,6 +31,12 @@ jobs:
           mkdir -p artifacts
           npm audit --json > artifacts/dependency-audit.json || true
           node -e 'const r=require("./artifacts/dependency-audit.json"); console.log("AUDIT:"+JSON.stringify(Object.values(r.vulnerabilities || {}).map(({name,severity,isDirect,fixAvailable,via})=>({name,severity,isDirect,fixAvailable,via}))));'
+      - name: Prepare same-major security dependency update
+        run: |
+          mkdir -p /tmp/portfolio-dependency-review
+          cp package.json package-lock.json /tmp/portfolio-dependency-review/
+          npm install --prefix /tmp/portfolio-dependency-review --package-lock-only --ignore-scripts --save-exact next@16.4.2 eslint-config-next@16.4.2 postcss@^8
+          node -e 'const fs=require("node:fs"); for(const name of ["package.json","package-lock.json"]){ const raw=fs.readFileSync("/tmp/portfolio-dependency-review/"+name,"utf8"); for(let i=0;i<raw.length;i+=30000) console.log("DEPENDENCY_UPDATE:"+JSON.stringify({path:name,index:i/30000,data:raw.slice(i,i+30000)})); }'
       - run: npm run lint
       - name: Build production
         run: npm run build
