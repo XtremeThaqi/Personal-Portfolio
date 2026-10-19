@@ -6,17 +6,17 @@ import { FiHome, FiTool, FiUser } from 'react-icons/fi';
 import { MdMail } from 'react-icons/md';
 import { CgWorkAlt } from 'react-icons/cg';
 
+const navData = [
+    { id: 1, name: 'Home', href: '#home' },
+    { id: 2, name: 'About', href: '#about' },
+    { id: 3, name: 'Skills', href: '#skills' },
+    { id: 4, name: 'Work', href: '#projects' },
+    { id: 5, name: 'Contact', href: '#contact' },
+];
+
 export default function Nav() {
     const [activeTab, setActiveTab] = useState(1);
     const [justClicked, setJustClicked] = useState(false);
-
-    const navData = [
-        { id: 1, name: 'Home', href: '#home' },
-        { id: 2, name: 'About', href: '#about' },
-        { id: 3, name: 'Skills', href: '#skills' },
-        { id: 4, name: 'Work', href: '#projects' },
-        { id: 5, name: 'Contact', href: '#contact' },
-    ];
 
     const socialIcons = [
         { icon: <FiHome />, href: '#home' },

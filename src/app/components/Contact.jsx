@@ -92,7 +92,7 @@ export default function Contact() {
           className="flex justify-center items-center gap-3 max-w-fit mx-auto mb-10 px-6 py-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-700/50 rounded-xl text-base text-zinc-300 font-medium shadow-md"
         >
           <span className="text-2xl">✉️</span>
-          Like what you see? Let's chat about your project!
+          Like what you see? Let&apos;s chat about your project!
         </motion.div>
 
         <motion.div
@@ -236,7 +236,7 @@ export default function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
               <p className="text-zinc-400 mb-8">
-                Thank you for reaching out. I'll get back to you soon.
+                Thank you for reaching out. I&apos;ll get back to you soon.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}

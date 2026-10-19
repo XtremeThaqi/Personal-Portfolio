@@ -67,7 +67,7 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            Hi there! I'm <span className="font-bold">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo.
+                            Hi there! I&apos;m <span className="font-bold">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo.
                             I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
                         </p>
                         <p className="text-lg text-zinc-300 leading-relaxed">
