@@ -92,7 +92,12 @@ export default function Projects() {
                     fill
                     sizes="(min-width: 1024px) 400px, (min-width: 768px) calc((100vw - 88px) / 2), calc(100vw - 40px)"
                     loading="lazy"
-                    className="object-cover object-top transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] motion-reduce:transform-none motion-reduce:transition-none"
+                    className={
+                      "object-cover object-top " +
+                      (shouldReduceMotion
+                        ? "transition-none"
+                        : "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]")
+                    }
                   />
                   <div
                     aria-hidden="true"
@@ -141,7 +146,11 @@ export default function Projects() {
                   >
                     <FaGithub
                       aria-hidden="true"
-                      className="text-base transition-transform duration-200 group-hover/action:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
+                      className={
+                        shouldReduceMotion
+                          ? "text-base"
+                          : "text-base transition-transform duration-200 group-hover/action:scale-110"
+                      }
                     />
                     Source Code
                   </a>
@@ -157,7 +166,11 @@ export default function Projects() {
                       Live Demo
                       <FaArrowUpRightFromSquare
                         aria-hidden="true"
-                        className="text-xs transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5 motion-reduce:transform-none motion-reduce:transition-none"
+                        className={
+                          shouldReduceMotion
+                            ? "text-xs"
+                            : "text-xs transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5"
+                        }
                       />
                     </a>
                   )}
