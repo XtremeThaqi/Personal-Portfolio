@@ -42,7 +42,7 @@ Descriptions are based on repository source inspection on 19 October 2026, not c
 
 | Project | Repository | Implemented in source | Scope |
 | --- | --- | --- | --- |
-| TechPhone Store | [Smartphone_store](https://github.com/XtremeThaqi/Smartphone_store) | PHP authentication; MySQL cart; order and item inserts in a transaction; admin product CRUD and image uploads | Learning project. No payment gateway. Deployment and end-to-end behavior need further validation. |
+| TechPhone Store | [Smartphone_store](https://github.com/XtremeThaqi/Smartphone_store) | PHP authentication; MySQL cart; order and item inserts in a transaction; admin product creation/editing and image uploads | Learning project. No payment gateway. Legacy routes and product-delete include paths need cleanup before end-to-end deployment. |
 | BLINI Restaurant | [Restaurant-App](https://github.com/XtremeThaqi/Restaurant-App) | Next.js menu, about, opening hours, testimonials and contact UI | Fictional restaurant concept. Booking form has no reservation backend. |
 | TaskFlow | [taskflow](https://github.com/XtremeThaqi/taskflow) | Tkinter task creation, completion, deletion and scrolling | Desktop prototype. In-memory tasks reset on exit; no browser demo. |
 | TechInsights | [Technology-News](https://github.com/XtremeThaqi/Technology-News) | Static pages and client-side category filtering | Frontend prototype. Subscription form only shows an alert; no CMS or mailing service. |
