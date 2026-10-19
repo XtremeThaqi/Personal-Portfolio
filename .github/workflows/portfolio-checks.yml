@@ -17,6 +17,8 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      PORTFOLIO_TOOLING_DIR: ${{ runner.temp }}/portfolio-tools
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,13 +26,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Record existing dependency advisories
+        run: |
+          mkdir -p artifacts
+          npm audit --json > artifacts/dependency-audit.json || true
+          node -e 'const r=require("./artifacts/dependency-audit.json"); console.log("AUDIT:"+JSON.stringify(Object.values(r.vulnerabilities || {}).map(({name,severity,isDirect,fixAvailable,via})=>({name,severity,isDirect,fixAvailable,via}))));'
       - run: npm run lint
       - name: Build production
         run: npm run build
         env:
           CONTEXT: production
-      - run: npm install --no-save --package-lock=false playwright lighthouse
-      - run: npx playwright install --with-deps chromium
+      - name: Install isolated browser tooling
+        run: npm install --prefix "$PORTFOLIO_TOOLING_DIR" --no-save playwright lighthouse
+      - run: node "$PORTFOLIO_TOOLING_DIR/node_modules/playwright/cli.js" install --with-deps chromium
       - name: Browser, contact and Lighthouse checks
         run: node scripts/check-responsive.mjs
         env:

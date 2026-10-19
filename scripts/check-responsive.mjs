@@ -1,13 +1,23 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
-import { mkdir } from "node:fs/promises";
-import { chromium } from "playwright";
+import { mkdir, readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
+import path from "node:path";
+
+const toolingRoot = process.env.PORTFOLIO_TOOLING_DIR ?? process.cwd();
+const toolingRequire = createRequire(path.join(toolingRoot, "package.json"));
+const { chromium } = toolingRequire("playwright");
 
 const origin = "http://127.0.0.1:3000";
 const server = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1"], { stdio: "inherit" });
 let browser;
 const preview = process.argv.includes("--preview");
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function reviewImage(label, bytes, mime = "image/jpeg") {
+  const parts = bytes.toString("base64").match(/.{1,40000}/g) ?? [];
+  parts.forEach((data, index) => console.log("QA_IMAGE:" + JSON.stringify({ label, mime, index, data })));
+}
 
 async function waitFor(check, message) {
   for (let attempt = 0; attempt < 40; attempt++) {
@@ -55,6 +65,7 @@ try {
       const png = Buffer.from(await asset.arrayBuffer());
       assert.equal(png.readUInt32BE(16), width);
       assert.equal(png.readUInt32BE(20), height);
+      if (width === 1200) reviewImage("sharing-preview", png, "image/png");
     }
     assert((await fetch(origin + "/icon.svg")).ok);
     await mkdir("artifacts/responsive", { recursive: true });
@@ -106,10 +117,12 @@ try {
       await page.locator("#projects").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/projects-${width}.png` });
+      if (width === 375 || width === 1440) reviewImage("projects-" + width, await page.screenshot({ type: "jpeg", quality: 35 }));
       for (const id of ["about", "skills", "contact"]) {
         await page.locator("#" + id).evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
         await pause(200);
       }
+      if (width === 375) reviewImage("contact-375", await page.screenshot({ type: "jpeg", quality: 35 }));
       for (const label of ["Your Name", "Email Address", "Your Message"]) {
         assert.equal(await page.getByLabel(label, { exact: true }).count(), 1);
       }
@@ -129,6 +142,7 @@ try {
       await page.getByRole("navigation").getByRole("link", { name: "Home", exact: true }).click();
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/home-${width}.png`, fullPage: true });
+      if (width === 375 || width === 1440) reviewImage("home-" + width, await page.screenshot({ type: "jpeg", quality: 35 }));
       assert.deepEqual(runtimeErrors, [], "No console or hydration errors");
       console.log("PASS: content, metadata, navigation, keyboard, images, console and layout at " + width + "px");
       await page.close();
@@ -178,7 +192,7 @@ try {
         await page.getByText("Message sent. Thank you for getting in touch.", { exact: true }).waitFor();
         assert.equal(await page.getByLabel("Your Message", { exact: true }).inputValue(), "");
       } else {
-        await page.getByRole("alert").waitFor();
+        await page.locator("#contact").getByRole("alert").waitFor();
         assert(await page.getByLabel("Your Message", { exact: true }).inputValue());
       }
       assert.equal(requests, scenario === "honeypot" ? 0 : 1);
@@ -198,11 +212,13 @@ try {
     // Lighthouse reports are informational; do not invent score thresholds.
     if (process.env.RUN_LIGHTHOUSE === "1") {
       await mkdir("artifacts/lighthouse", { recursive: true });
-      const lighthouse = spawn(process.execPath, ["node_modules/lighthouse/cli/index.js", origin, "--chrome-flags=--headless --no-sandbox", "--only-categories=performance,accessibility,best-practices,seo", "--output=html", "--output=json", "--output-path=artifacts/lighthouse/portfolio", "--quiet"], { stdio: "inherit", env: { ...process.env, CHROME_PATH: chromium.executablePath() } });
+      const lighthouse = spawn(process.execPath, [path.join(toolingRoot, "node_modules/lighthouse/cli/index.js"), origin, "--chrome-flags=--headless --no-sandbox", "--only-categories=performance,accessibility,best-practices,seo", "--output=html", "--output=json", "--output-path=artifacts/lighthouse/portfolio", "--quiet"], { stdio: "inherit", env: { ...process.env, CHROME_PATH: chromium.executablePath() } });
       await new Promise((resolve, reject) => {
         lighthouse.on("error", reject);
         lighthouse.on("exit", (code) => code === 0 ? resolve() : reject(new Error("Lighthouse exited with " + code)));
       });
+      const report = JSON.parse(await readFile("artifacts/lighthouse/portfolio.report.json", "utf8"));
+      console.log("LIGHTHOUSE:" + JSON.stringify({ scores: Object.fromEntries(Object.entries(report.categories).map(([id, category]) => [id, Math.round(category.score * 100)])), issues: Object.values(report.audits).filter((audit) => audit.score !== null && audit.score < 1).map(({ id, title, displayValue }) => ({ id, title, displayValue })) }));
     }
   }
 } finally {
