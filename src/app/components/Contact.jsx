@@ -92,25 +92,26 @@ export default function Contact() {
           className="flex justify-center items-center gap-3 max-w-fit mx-auto mb-10 px-6 py-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-700/50 rounded-xl text-base text-zinc-300 font-medium shadow-md"
         >
           <span className="text-2xl">✉️</span>
-          Like what you see? Let's chat about your project!
+          Like what you see? Let&apos;s chat about your project!
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/50 rounded-3xl p-10 shadow-2xl"
+          className="bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/50 rounded-3xl p-5 sm:p-10 shadow-2xl"
         >
           <form ref={form} onSubmit={handleSubmit} className="space-y-8">
             {/* Name + Email row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label htmlFor="contact-name" className="block text-sm font-medium text-zinc-400 mb-2">
                   Your Name
                 </label>
                 <input
                   type="text"
+                  id="contact-name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -125,11 +126,12 @@ export default function Contact() {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
+                <label htmlFor="contact-email" className="block text-sm font-medium text-zinc-400 mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
+                  id="contact-email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -145,11 +147,12 @@ export default function Contact() {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-2">
-                Your Message
+              <label htmlFor="contact-message" className="block text-sm font-medium text-zinc-400 mb-2">
+                  Your Message
               </label>
               <textarea
-                name="message"
+                id="contact-message"
+                  name="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows={6}
@@ -236,7 +239,7 @@ export default function Contact() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
               <p className="text-zinc-400 mb-8">
-                Thank you for reaching out. I'll get back to you soon.
+                Thank you for reaching out. I&apos;ll get back to you soon.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}

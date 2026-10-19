@@ -24,7 +24,7 @@ export default function Footer() {
                             Erblin Thaqi
                         </h2>
                         <p className="mt-2 text-sm sm:text-base text-zinc-500 font-light">
-                            Full-Stack Developer • Crafting digital experiences
+                            Full-Stack Developer • React, Next.js, PHP & Laravel
                         </p>
                     </motion.div>
 

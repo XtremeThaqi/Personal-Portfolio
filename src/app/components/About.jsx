@@ -67,12 +67,16 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            Hi there! I'm <span className="font-bold">Erblin Thaqi</span>, a passionate full-stack developer from Kosovo.
-                            I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
+                            I&apos;m <span className="font-bold">Erblin Thaqi</span>, a full-stack developer from Kosovo.
+                            I build responsive frontends with React, Next.js, and Tailwind CSS, and develop server-side applications with PHP and Laravel.
                         </p>
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            I create responsive interfaces while implementing robust server-side functionality.
-                            My approach combines creative problem-solving with clean, efficient code.
+                            My experience includes structuring backend routes and application logic, integrating MySQL databases,
+                            and implementing authentication, product management, and shopping cart workflows in project code.
+                        </p>
+                        <p className="text-lg text-zinc-300 leading-relaxed">
+                            I&apos;m also learning web application security through hands-on practice. It informs how I think
+                            about input validation, access control, and the data an application exposes.
                         </p>
                         <div className="flex flex-wrap gap-4 mt-6">
                             {skills.map((skill, index) => (

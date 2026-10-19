@@ -1,0 +1,33 @@
+name: Portfolio checks
+
+on:
+  push:
+    branches: [feat/content-project-showcase]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm install --no-save --package-lock=false playwright
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/check-responsive.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: responsive-review
+          path: artifacts/responsive/
+          if-no-files-found: ignore
