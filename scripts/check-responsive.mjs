@@ -108,6 +108,14 @@ try {
         await image.scrollIntoViewIfNeeded();
         await image.evaluate((element) => element.decode());
       }
+      if (width === 320) {
+        const card = page.locator("[data-project-card]").first();
+        const image = card.locator("[data-project-image]");
+        await card.hover();
+        await pause(650);
+        assert.equal(await card.evaluate((element) => getComputedStyle(element).transform), "none", "Reduced motion must disable card scaling");
+        assert.equal(await image.evaluate((element) => getComputedStyle(element).transform), "none", "Reduced motion must disable image zoom");
+      }
       await page.locator("#projects").evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
       await pause(300);
       await page.screenshot({ path: `artifacts/responsive/projects-${width}.png` });
@@ -199,6 +207,40 @@ try {
       throw new Error(error.message + "; " + JSON.stringify(await animated.evaluate(() => ({ hash: location.hash, scrollY, navHeight: document.querySelector("nav").offsetHeight, active: document.querySelector("nav a[aria-current]")?.getAttribute("href"), projectsTop: document.querySelector("#projects").getBoundingClientRect().top }))));
     });
     await pause(1000);
+    const hoverCard = animated.locator("[data-project-card]").first();
+    const hoverImage = hoverCard.locator("[data-project-image]");
+    const beforeHover = await hoverCard.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        scale: new DOMMatrixReadOnly(style.transform).a,
+        borderColor: style.borderColor,
+      };
+    });
+    await hoverCard.hover();
+    await pause(650);
+    const afterHover = await hoverCard.evaluate((element) => {
+      const style = getComputedStyle(element);
+      const matrix = new DOMMatrixReadOnly(style.transform);
+      return {
+        scale: matrix.a,
+        borderColor: style.borderColor,
+        boxShadow: style.boxShadow,
+      };
+    });
+    const imageScale = await hoverImage.evaluate((element) => new DOMMatrixReadOnly(getComputedStyle(element).transform).a);
+    assert(afterHover.scale >= beforeHover.scale + 0.009 && afterHover.scale <= 1.015, "Card hover scale should remain restrained");
+    assert(imageScale >= 1.04 && imageScale <= 1.06, "Project image should zoom on hover");
+    assert.notEqual(afterHover.borderColor, beforeHover.borderColor, "Card border should react on hover");
+    assert.notEqual(afterHover.boxShadow, "none", "Card should gain depth on hover");
+    const sourceLink = hoverCard.getByRole("link", { name: /source code/i });
+    await sourceLink.focus();
+    await animated.keyboard.press("Tab");
+    await animated.keyboard.press("Shift+Tab");
+    assert(await sourceLink.evaluate((element) => element === document.activeElement));
+    assert(await sourceLink.evaluate((element) => parseFloat(getComputedStyle(element).outlineWidth) >= 2), "Project actions need a visible focus indicator");
+    await hoverCard.hover();
+    await animated.screenshot({ path: "artifacts/responsive/projects-desktop-hover.png" });
+    console.log("PASS: project card hover, image zoom, focus treatment and reduced-motion behavior");
     await animated.screenshot({ path: "artifacts/responsive/desktop-motion.png" });
     await animated.close();
 
