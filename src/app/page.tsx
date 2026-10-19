@@ -10,8 +10,8 @@ import MotionProvider from "./components/MotionProvider";
 export default function Page() {
   return (
     <MotionProvider>
-      <Nav />
       <a href="#main-content" className="skip-link">Skip to content</a>
+      <Nav />
       <main id="main-content" tabIndex={-1}>
         <Home />
         <Projects />

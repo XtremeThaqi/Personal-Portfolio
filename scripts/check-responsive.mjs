@@ -86,7 +86,10 @@ try {
         const link = page.getByRole("navigation").getByRole("link", { name, exact: true });
         await link.focus();
         await page.keyboard.press("Enter");
-        await page.waitForURL("**/#" + id);
+        await page.waitForURL("**/#" + id).catch(async (error) => {
+          await page.screenshot({ path: `artifacts/responsive/navigation-failure-${width}.png` });
+          throw new Error(`${error.message}; URL=${page.url()}; focus=${await page.evaluate(() => document.activeElement.outerHTML)}`);
+        });
         await waitFor(async () => (await link.getAttribute("aria-current")) === "location", "Active section should follow " + id);
         await waitFor(() => page.evaluate((target) => document.activeElement.id === target, id), "Anchor focus should move to " + id);
       }

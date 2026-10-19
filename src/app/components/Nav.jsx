@@ -33,13 +33,6 @@ export default function Nav() {
       setActiveTab(atBottom ? sections.at(-1)?.id ?? "home" : current?.id ?? "home");
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const focusAnchor = () => {
-      const id = window.location.hash.slice(1);
-      if (navigation.some((item) => item.id === id)) {
-        document.getElementById(id)?.focus({ preventScroll: true });
-      }
-      schedule();
-    };
     const breakpoint = window.matchMedia("(min-width: 768px)");
     const restoreFocus = () => {
       const focused = document.activeElement;
@@ -54,7 +47,7 @@ export default function Nav() {
     observer.observe(document.body);
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
-    window.addEventListener("hashchange", focusAnchor);
+    window.addEventListener("hashchange", schedule);
     window.addEventListener("popstate", schedule);
     breakpoint.addEventListener("change", restoreFocus);
     schedule();
@@ -63,7 +56,7 @@ export default function Nav() {
       observer.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
-      window.removeEventListener("hashchange", focusAnchor);
+      window.removeEventListener("hashchange", schedule);
       window.removeEventListener("popstate", schedule);
       breakpoint.removeEventListener("change", restoreFocus);
     };
