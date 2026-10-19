@@ -93,7 +93,7 @@ export default function Skills() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
+    <section tabIndex={-1} className="py-32 bg-gradient-to-b from-black via-zinc-950 to-black text-white" id="skills">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -106,7 +106,7 @@ export default function Skills() {
             Current technologies
           </h2>
           <p className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]">
-            I use these tools across my web and desktop projects, with a focus on React, Next.js, PHP, Laravel, and MySQL.
+            Tools I use across my web and desktop projects.
           </p>
         </motion.div>
 

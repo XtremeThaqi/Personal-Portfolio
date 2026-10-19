@@ -23,8 +23,8 @@ export default function Footer() {
                         <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-red-600 tracking-tight">
                             Erblin Thaqi
                         </h2>
-                        <p className="mt-2 text-sm sm:text-base text-zinc-500 font-light">
-                            Full-Stack Developer • React, Next.js, PHP & Laravel
+                        <p className="mt-2 text-sm sm:text-base text-zinc-400 font-light">
+                            Full-Stack Developer • Based in Kosovo
                         </p>
                     </motion.div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom section: Copyright + Back to top */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm text-zinc-500 border-t border-zinc-800/50 pt-8">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-sm text-zinc-400 border-t border-zinc-800/50 pt-8">
                     <p>
                         © {new Date().getFullYear()} Erblin Thaqi. All rights reserved.
                     </p>

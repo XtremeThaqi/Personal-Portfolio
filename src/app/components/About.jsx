@@ -37,7 +37,7 @@ export default function About() {
     ];
 
     return (
-        <section className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
+        <section tabIndex={-1} className="min-h-screen bg-gradient-to-b from-zinc-950 via-black to-zinc-950 flex items-center justify-center py-32 px-5 sm:px-8" id="about">
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Content */}
                 <div className="space-y-8">
@@ -68,21 +68,18 @@ export default function About() {
                     >
                         <p className="text-lg text-zinc-300 leading-relaxed">
                             I&apos;m <span className="font-bold">Erblin Thaqi</span>, a full-stack developer from Kosovo.
-                            I build responsive frontends with React, Next.js, and Tailwind CSS, and develop server-side applications with PHP and Laravel.
+                            I enjoy connecting the interface people use with the logic and data behind it.
                         </p>
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            My experience includes structuring backend routes and application logic, integrating MySQL databases,
-                            and implementing authentication, product management, and shopping cart workflows in project code.
-                        </p>
-                        <p className="text-lg text-zinc-300 leading-relaxed">
-                            I&apos;m also learning web application security through hands-on practice. It informs how I think
-                            about input validation, access control, and the data an application exposes.
+                            My projects have taught me to build responsive interfaces, structure backend routes,
+                            and work with database-backed accounts, product catalogs, and shopping carts.
+                            I&apos;m also learning web application security, with a focus on input validation and access control.
                         </p>
                         <div className="flex flex-wrap gap-4 mt-6">
                             {skills.map((skill, index) => (
                                 <motion.div
                                     key={index}
-                                    whileHover={{ y: -5 }}
+                                    whileHover={{ scale: 1.03 }}
                                     viewport={{ once: true }}
                                     className="select-none cursor-default flex items-center gap-2 px-4 py-2 bg-zinc-900/70 backdrop-blur-md border border-zinc-800/50 rounded-lg"
                                 >

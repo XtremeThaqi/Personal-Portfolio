@@ -9,10 +9,14 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: portfolio-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,13 +25,26 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
-      - run: npm run build
-      - run: npm install --no-save --package-lock=false playwright
+      - name: Build production
+        run: npm run build
+        env:
+          CONTEXT: production
+      - run: npm install --no-save --package-lock=false playwright lighthouse
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/check-responsive.mjs
+      - name: Browser, contact and Lighthouse checks
+        run: node scripts/check-responsive.mjs
+        env:
+          RUN_LIGHTHOUSE: "1"
+      - name: Build preview
+        run: npm run build
+        env:
+          CONTEXT: deploy-preview
+          DEPLOY_PRIME_URL: https://deploy-preview-1--erblinthaqi.netlify.app
+      - name: Verify preview indexing protection
+        run: node scripts/check-responsive.mjs --preview
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: responsive-review
-          path: artifacts/responsive/
+          name: portfolio-review
+          path: artifacts/
           if-no-files-found: ignore

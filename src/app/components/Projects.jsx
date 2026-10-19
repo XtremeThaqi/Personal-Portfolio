@@ -9,17 +9,9 @@ import img4 from "./images/img4.jpg";
 
 const projects = [
   {
-    id: "techphone",
-    title: "TechPhone Store",
-    description: "A smartphone store with customer accounts, a shopping cart, and an admin dashboard.",
-    technologies: ["PHP", "MySQL", "Tailwind CSS"],
-    repository: "https://github.com/XtremeThaqi/Smartphone_store",
-    demo: "https://smartphone-store.rf.gd",
-  },
-  {
     id: "blini",
     title: "BLINI Restaurant",
-    description: "A responsive restaurant website featuring an interactive menu and smooth page transitions.",
+    description: "A restaurant website concept with a food menu, opening hours, and animated sections.",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
     repository: "https://github.com/XtremeThaqi/Restaurant-App",
     demo: "https://blini.netlify.app",
@@ -28,7 +20,7 @@ const projects = [
   {
     id: "taskflow",
     title: "TaskFlow",
-    description: "A lightweight desktop app for creating, completing, and organizing tasks.",
+    description: "A Python desktop app for adding tasks, marking them complete, and keeping the day organized.",
     technologies: ["Python", "Tkinter"],
     repository: "https://github.com/XtremeThaqi/taskflow",
     image: img2,
@@ -36,7 +28,7 @@ const projects = [
   {
     id: "techinsights",
     title: "TechInsights",
-    description: "A technology news interface with article browsing and category filtering.",
+    description: "A technology news frontend with article browsing and category filters.",
     technologies: ["HTML", "JavaScript", "Tailwind CSS"],
     repository: "https://github.com/XtremeThaqi/Technology-News",
     demo: "https://erblinthaqi-tech.netlify.app",
@@ -46,7 +38,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section
+    <section tabIndex={-1}
       id="projects"
       aria-labelledby="projects-heading"
       className="relative bg-[#0a0a0a] py-24 sm:py-32 px-5 sm:px-8"
@@ -72,30 +64,20 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5 }}
-              className="group min-w-0 overflow-hidden rounded-2xl border border-zinc-800 bg-[#151515] transition-colors hover:border-zinc-600"
+              className="group flex flex-col min-w-0 overflow-hidden rounded-2xl border border-zinc-800 bg-[#151515] transition-colors hover:border-red-500/40"
             >
               <div className="relative aspect-[16/9] overflow-hidden bg-[#101010]">
-                {project.image ? (
-                  <Image
+                <Image
                     src={project.image}
-                    alt={`${project.title} project preview`}
+                    alt={project.id === "blini" ? "BLINI Restaurant website preview" : project.id === "taskflow" ? "TaskFlow desktop task manager preview" : "TechInsights technology news website preview"}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1280px) 608px, (min-width: 768px) calc((100vw - 88px) / 2), calc(100vw - 40px)"
+                    loading="lazy"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                ) : (
-                  <div
-                    className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#1c1111] via-[#111] to-[#080808]"
-                    aria-label="TechPhone Store project"
-                  >
-                    <span aria-hidden="true" className="select-none text-6xl sm:text-7xl font-bold tracking-tighter text-red-500/80">
-                      TP<span className="text-zinc-500">.</span>
-                    </span>
-                  </div>
-                )}
               </div>
 
-              <div className="p-5 sm:p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <h3 id={`${project.id}-title`} className="text-xl sm:text-2xl font-semibold text-white">
                   {project.title}
                 </h3>
@@ -103,7 +85,7 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <ul aria-label={`${project.title} technologies`} className="mt-5 flex flex-wrap gap-2">
+                <ul aria-label={`${project.title} technologies`} className="mt-5 mb-1 flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <li key={tech} className="rounded-lg border border-zinc-800 bg-[#1c1c1c] px-3 py-1.5 text-xs font-medium text-zinc-300">
                       {tech}
@@ -111,7 +93,7 @@ export default function Projects() {
                   ))}
                 </ul>
 
-                <div className="mt-6 flex flex-wrap items-center gap-5 text-sm font-medium">
+                <div className="mt-auto pt-5 flex flex-wrap items-center gap-5 text-sm font-medium">
                   <a
                     href={project.repository}
                     target="_blank"

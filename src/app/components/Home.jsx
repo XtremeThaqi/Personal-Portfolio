@@ -2,20 +2,17 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 export const socialLinks = [
     { label: "GitHub profile", icon: <FaGithub aria-hidden="true" />, href: "https://github.com/XtremeThaqi" },
-    { label: "X profile", icon: <RiTwitterXFill aria-hidden="true" />, href: "https://x.com/erblinthaq44084" },
     { label: "LinkedIn profile", icon: <FaLinkedinIn aria-hidden="true" />, href: "https://linkedin.com/in/erblinthaqi" },
-    { label: "Instagram profile", icon: <FaInstagram aria-hidden="true" />, href: "https://instagram.com/thaqiierblin/" },
 ];
 
 export default function Home() {
     
     return (
-        <section id="home" className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black flex items-center justify-center px-5 sm:px-8 overflow-hidden mx-auto">
+        <section tabIndex={-1} id="home" className="relative min-h-screen bg-gradient-to-b from-black via-zinc-950 to-black flex items-center justify-center px-5 sm:px-8 overflow-hidden mx-auto">
             <div className="z-10 w-full max-w-6xl pt-28 pb-16">
                 {/* Main name */}
                 <motion.h1
@@ -43,11 +40,13 @@ export default function Home() {
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.9 }}
-                    className="text-lg text-zinc-400 text-center max-w-3xl mx-auto leading-relaxed mb-12 tracking-tight"
+                    className="text-lg text-zinc-400 text-center max-w-2xl mx-auto leading-relaxed mb-8 tracking-tight"
                 >
-                    I work with React and Next.js on the frontend, and PHP, Laravel, and MySQL on the backend.
-                    My projects connect responsive interfaces with authentication, product data, and everyday user workflows.
+                    I&apos;m a developer from Kosovo working across the frontend and backend.
+                    I build with React and Next.js, and connect applications to PHP, Laravel, and MySQL.
                 </motion.p>
+
+                <p className="text-sm text-zinc-400 text-center mb-8">Open to junior developer and internship opportunities.</p>
 
                 {/* Buttons */}
                 <motion.div
@@ -59,7 +58,7 @@ export default function Home() {
                         href="#projects"
                         className="px-10 py-4 bg-white text-black font-semibold rounded-2xl flex items-center justify-center gap-2 border"
                     >
-                        Explore my projects →
+                        View my work →
                     </motion.a>
 
                     <motion.a href="#contact"
@@ -83,9 +82,11 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 whileHover={{ color: "#ffffff", borderColor: "#2c2c2c" }}
+                                title={social.label}
                                 className="w-14 h-14 bg-[#141414] border border-[#1f1f1f] rounded-2xl flex items-center justify-center text-2xl text-gray-400 cursor-pointer"
                             >
                                 {social.icon}
+                                <span className="sr-only">{social.label}</span>
                             </motion.a>
                         ))}
                     </div>

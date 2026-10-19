@@ -1,10 +1,10 @@
 # Erblin Thaqi — Personal Portfolio
 
-Personal portfolio built with Next.js App Router, React, Tailwind CSS, and Framer Motion. The existing black background, red accents, rounded surfaces, typography, and section animations are preserved.
+A personal portfolio built with Next.js App Router, React, Tailwind CSS, and Framer Motion. It keeps the original black/red styling and floating glass navigation.
 
-## Development
+## Setup
 
-Use Node.js 22 LTS or newer and npm.
+Use Node.js 22 LTS or newer.
 
 ```bash
 git clone https://github.com/XtremeThaqi/Personal-Portfolio.git
@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. Production and lint commands:
 
 ```bash
 npm run lint
@@ -21,57 +21,55 @@ npm run build
 npm start
 ```
 
-ESLint uses the flat configuration in `eslint.config.mjs`. Next.js 16 no longer provides `next lint`.
+The build needs access to Google's font servers for the existing Inter font. ESLint uses `eslint.config.mjs`; no extra runtime libraries were added.
 
-The contact form uses the existing EmailJS browser integration. Public service, template, and key identifiers are configured in `src/app/components/Contact.jsx`; configure your own EmailJS account and permitted origins before reusing the form. Never add private EmailJS credentials. Sending a real message is a separate integration check.
+## Content and navigation
 
-## Structure
+The homepage contains Home, Work, About, Skills, and Contact. Navigation keeps the appearance, spacing, icon layout, and spring underline from `main`. Native anchors preserve URL hashes and browser history. Active-section detection uses actual page positions, including scrolling, resizing, and layout changes. Keyboard focus follows activated anchors and survives the mobile/desktop breakpoint. Touch targets extend to 44px without changing icon spacing.
 
-- `src/app/page.tsx`: Home → Projects → About → Skills → Contact, with navigation and footer.
-- `src/app/components/Projects.jsx`: project content, scope notes, source and demo links.
-- `src/app/components/Home.jsx`: hero copy and shared social links.
-- `src/app/layout.tsx`: SEO metadata and the existing Inter font setup.
-- `src/app/globals.css`: base styles, keyboard focus, skip link, anchor offsets, reduced motion.
-- `src/app/components/images/`: existing project previews; no new screenshots are fabricated.
+The three screenshot-led cards are BLINI Restaurant, TaskFlow, and TechInsights. Existing screenshots are reused with reserved aspect ratios, lazy loading, and responsive `sizes`.
 
-The build uses `next/font/google` and needs access to Google's font servers.
+| Project | Source | Scope |
+| --- | --- | --- |
+| BLINI Restaurant | [Restaurant-App](https://github.com/XtremeThaqi/Restaurant-App) | Restaurant frontend concept with menu and contact UI; no booking backend. |
+| TaskFlow | [taskflow](https://github.com/XtremeThaqi/taskflow) | Python/Tkinter task manager; task data is in memory. |
+| TechInsights | [Technology-News](https://github.com/XtremeThaqi/Technology-News) | Static news frontend with category filtering. |
 
-## Featured projects and verified scope
+Descriptions are based on source inspection. No features, screenshots, metrics, experience, or CV were invented.
 
-Descriptions are based on repository source inspection on 19 October 2026, not claims of production readiness. These are separate projects; the portfolio does not run their backends.
+## Contact
 
-| Project | Repository | Implemented in source | Scope |
-| --- | --- | --- | --- |
-| TechPhone Store | [Smartphone_store](https://github.com/XtremeThaqi/Smartphone_store) | PHP authentication; MySQL cart; order and item inserts in a transaction; admin product creation/editing and image uploads | Learning project. No payment gateway. Legacy routes and product-delete include paths need cleanup before end-to-end deployment. |
-| BLINI Restaurant | [Restaurant-App](https://github.com/XtremeThaqi/Restaurant-App) | Next.js menu, about, opening hours, testimonials and contact UI | Fictional restaurant concept. Booking form has no reservation backend. |
-| TaskFlow | [taskflow](https://github.com/XtremeThaqi/taskflow) | Tkinter task creation, completion, deletion and scrolling | Desktop prototype. In-memory tasks reset on exit; no browser demo. |
-| TechInsights | [Technology-News](https://github.com/XtremeThaqi/Technology-News) | Static pages and client-side category filtering | Frontend prototype. Subscription form only shows an alert; no CMS or mailing service. |
+`Contact.jsx` is server-rendered: the heading and email fallback are available in the initial HTML and without JavaScript. `ContactForm.jsx` keeps the existing form style, loads EmailJS only on submission, validates fields, associates errors with inputs, announces status, prevents duplicate requests, and includes a honeypot and client-side cooldown.
 
-Source references:
-- TechPhone: `includes/auth.php`, `pages/cart.php`, `pages/checkout.php`, `admin/phones/{add,edit,delete}.php`.
-- BLINI: `src/app/components/{Food,Contact,Open,Testimonials}.jsx` and the fictional-restaurant note in `WarningMessage.jsx`.
-- TaskFlow: `taskflow.py`, including in-memory pending/completed lists.
-- TechInsights: `index.html`, `articles.html`, `about.html`, `javascipt/index.js` (repository spelling).
+The existing EmailJS public key, service ID, template ID, and `name`, `email`, `message` field names are preserved. Account credentials, allowed origins, service connection, and template recipient must remain configured in EmailJS; browser tests mock responses and do not verify real delivery. Client-side spam protection is only a basic deterrent. Configure EmailJS domain restrictions and service-side rate limits in the account for stronger protection.
 
-Existing BLINI and TechInsights demo links are retained. TechPhone's previously used hosted demo is linked with an availability note; availability and backend behavior are not guaranteed. TaskFlow links to its source. Existing previews are retained and may reflect earlier versions.
+The fallback address in `src/app/lib/contact.js` is the existing author email from repository commit `4d4800adc6429ffa469fa065e77ece81f890ba73`. No private credentials are needed in this repository.
+
+## SEO and previews
+
+Next.js metadata conventions generate a 1200 × 630 Open Graph PNG, an SVG favicon, a 180 × 180 Apple icon, `robots.txt`, and `sitemap.xml`. Twitter uses `summary_large_image`. Canonical URLs point to https://erblinthaqi.netlify.app.
+
+When Netlify's build-time `CONTEXT` is a preview or other non-production context, the page emits `noindex, nofollow`, Next.js sends an `X-Robots-Tag` header, robots disallows crawling, and the sitemap has no entries. `CONTEXT=production` and ordinary local builds remain indexable. Netlify also applies its own noindex header to Deploy Previews. No blanket production noindex rule is added.
 
 ## Validation
 
-The GitHub Actions portfolio check installs from the lockfile, runs ESLint, builds production output, then checks the built site in Chromium at 320, 375, 768, and 1440 pixels. It checks project order, source links, navigation, metadata, accessible link names, form labels, image loading, and horizontal overflow, and uploads screenshots for review.
+GitHub Actions performs `npm ci`, ESLint, a production build, browser checks at 320, 375, 768, 1024, and 1440px, and an informational Lighthouse run. It then builds with `CONTEXT=deploy-preview` and checks preview indexing protection separately.
 
-To run the browser check locally after a production build:
+Browser checks cover initial HTML and no-JavaScript contact access, project order and link destinations, keyboard/native anchors, manual scrolling, breakpoint focus, accessible names and labels, image loading, overflow, and browser errors. Mocked EmailJS tests cover validation, loading, error, success, honeypot rejection, and duplicate requests; they never deliver email. Screenshots and Lighthouse reports are uploaded as the `portfolio-review` artifact.
+
+Run these checks locally after `npm run build`:
 
 ```bash
-npm install --no-save --package-lock=false playwright
+npm install --no-save --package-lock=false playwright lighthouse
 npx playwright install chromium
-node scripts/check-responsive.mjs
+RUN_LIGHTHOUSE=1 node scripts/check-responsive.mjs
 ```
 
-Also review keyboard focus, reduced motion, mobile and desktop layouts, and contact-form delivery manually before merging. Automated checks do not replace assistive-technology testing.
+On PowerShell, set `$env:RUN_LIGHTHOUSE = "1"` before running the Node command. Real EmailJS delivery and assistive-technology testing remain separate manual checks.
 
 ## Deployment
 
-The current site is hosted at https://erblinthaqi.netlify.app. This branch does not change hosting configuration. Review and approve the pull request before merging into `main` or deploying.
+Review PR #1 before merging into `main` or deploying to production. Existing Netlify integration may automatically create deploy previews for branch updates. This change does not request a production deployment.
 
 ## License
 
