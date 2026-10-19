@@ -42,8 +42,8 @@ export default function Home() {
                     transition={{ delay: 0.5, duration: 0.9 }}
                     className="text-lg text-zinc-400 text-center max-w-2xl mx-auto leading-relaxed mb-8 tracking-tight"
                 >
-                    I&apos;m a developer from Kosovo working across the frontend and backend.
-                    I build with React and Next.js, and connect applications to PHP, Laravel, and MySQL.
+                    I&apos;m a developer from Kosovo. I build web interfaces with React and Next.js
+                    and backend features with PHP, Laravel, and MySQL.
                 </motion.p>
 
                 <p className="text-sm text-zinc-400 text-center mb-8">Open to junior developer and internship opportunities.</p>
