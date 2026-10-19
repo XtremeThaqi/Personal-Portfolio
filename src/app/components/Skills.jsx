@@ -106,7 +106,7 @@ export default function Skills() {
             Current technologies
           </h2>
           <p className="text-[15px] text-stone-200/70 tracking-tight max-w-lg md:max-w-[600px]">
-            I'm proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.
+            I&apos;m proficient in modern technologies that help me build efficient, scalable solutions. These are my core tools.
           </p>
         </motion.div>
 
