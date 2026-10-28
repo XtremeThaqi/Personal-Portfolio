@@ -71,8 +71,7 @@ export default function About() {
                             I specialize in building modern web applications with React, Next.js, and PHP/Laravel.
                         </p>
                         <p className="text-lg text-zinc-300 leading-relaxed">
-                            I create responsive interfaces while implementing robust server-side functionality.
-                            My approach combines creative problem-solving with clean, efficient code.
+                            What I enjoy most about development is seeing an idea turn into something real. I like experimenting with different approaches, solving problems, and improving my work as I learn.
                         </p>
                         <div className="flex flex-wrap gap-4 mt-6">
                             {skills.map((skill, index) => (

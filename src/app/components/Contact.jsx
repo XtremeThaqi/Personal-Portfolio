@@ -78,25 +78,22 @@ export default function Contact() {
     (errors[name] ? "border-red-500" : "border-zinc-700 hover:border-zinc-500");
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="bg-black px-5 py-24 text-white sm:px-8 sm:py-32">
+    <section id="contact" aria-labelledby="contact-heading" className="bg-black px-3 py-24 text-white sm:px-8 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.12 }}
           transition={{ duration: reduceMotion ? 0 : 0.55, ease: "easeOut" }}
-          className="grid gap-3 rounded-[28px] border border-zinc-800 bg-[#0a0a0a] p-3 sm:p-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-5 lg:p-5"
+          className="grid rounded-[28px] border border-zinc-800 bg-[#0a0a0a] p-3 sm:p-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-5 lg:p-5"
         >
-          <div className="flex flex-col items-center justify-center px-4 py-14 text-center sm:px-8 lg:min-h-[520px] lg:py-12">
-            <span className="mb-7 rounded-full border border-zinc-700 px-4 py-1.5 text-xs font-medium tracking-widest text-zinc-400">
-              CONTACT
-            </span>
+          <div className="flex flex-col items-start justify-center px-2 py-10 sm:px-8 lg:min-h-[520px] lg:py-12">
 
             <h2
               id="contact-heading"
               className="max-w-lg text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl"
             >
-              Have a project in mind<span className="text-red-500">?</span>
+              Have a project in mind?
             </h2>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-zinc-400">
               Whether it&apos;s a website, an application, or an idea worth exploring, let&apos;s talk.
@@ -104,16 +101,15 @@ export default function Contact() {
 
             <a
               href={"mailto:" + EMAIL}
-              className="group mt-9 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:border-red-500/70 hover:bg-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+              className="group mt-5 sm:mt-9 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:border-red-500/70 hover:bg-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
             >
               <FiMail aria-hidden="true" className="text-red-500" />
               Get in touch with Gmail
               <FiArrowUpRight aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none" />
             </a>
-            <p className="mt-3 break-all text-sm text-zinc-500">{EMAIL}</p>
           </div>
 
-          <div className="rounded-[22px] border border-zinc-800 bg-[#121212] px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+          <div className="rounded-[22px] border border-zinc-900 bg-[#121212] px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
             <h3 className="mb-8 text-2xl font-semibold tracking-tight text-white">
               Send a message
             </h3>
