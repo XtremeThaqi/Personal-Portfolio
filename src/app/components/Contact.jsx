@@ -1,254 +1,216 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FiUser, FiMail, FiMessageSquare, FiSend } from "react-icons/fi";
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { FiArrowUpRight, FiMail, FiSend } from "react-icons/fi";
+import emailjs from "@emailjs/browser";
+
+const EMAIL = "erblinthaqi40@gmail.com";
+const INITIAL_FORM = { name: "", email: "", message: "" };
 
 export default function Contact() {
   const form = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const [formData, setFormData] = useState(INITIAL_FORM);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState(null);
+  const [website, setWebsite] = useState("");
 
-  // Initialize EmailJS once when component mounts
   useEffect(() => {
-    emailjs.init("D8iqse_Hvt9TS8Tcs"); // ← your public key here
+    emailjs.init("D8iqse_Hvt9TS8Tcs");
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
+    setErrors((current) => ({ ...current, [name]: "" }));
+    setFeedback(null);
+  }
 
-  const [errors, setErrors] = useState({});
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.name.trim() || formData.name.trim().length < 2 || !/^[a-zA-Z\s]+$/.test(formData.name)) {
-      newErrors.name = "Please enter a valid name (min 2 letters)";
+  function validateForm() {
+    const nextErrors = {};
+    if (formData.name.trim().length < 2) {
+      nextErrors.name = "Please enter your name (at least 2 characters).";
     }
-
-    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      nextErrors.email = "Please enter a valid email address.";
     }
-
-    if (!formData.message.trim() || formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
+    if (formData.message.trim().length < 10) {
+      nextErrors.message = "Your message needs at least 10 characters.";
     }
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing again
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm() || !form.current) return;
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (isSubmitting || !form.current) return;
+    if (website) return;
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
-
+    setFeedback(null);
     try {
       await emailjs.sendForm(
         "service_x7ad9n2",
         "template_dtq8b0u",
         form.current
-        // No fourth argument needed because we called emailjs.init() above
       );
-
-      setIsSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
-
-      // Hide success message after 6 seconds
-      setTimeout(() => setIsSuccess(false), 6000);
+      setFormData(INITIAL_FORM);
+      setErrors({});
+      setFeedback({ type: "success", text: "Message sent. Thanks for getting in touch!" });
     } catch (error) {
-      console.error("EmailJS error:", error);
-      // For debugging — open browser console (F12) and check this
-      console.log("Error details:", error?.text || error?.message);
-      // You can show a user-friendly error if you want:
-      // alert("Something went wrong. Please try again.");
+      console.error("EmailJS send failed:", error);
+      setFeedback({
+        type: "error",
+        text: "Your message couldn't be sent. Please try again or email me directly.",
+      });
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }
+
+  const fieldClass = (name) =>
+    "w-full min-h-11 border-0 border-b bg-transparent px-0 py-3 text-base text-white " +
+    "placeholder:text-zinc-600 outline-none transition-colors duration-200 " +
+    "focus:border-red-500 focus-visible:border-red-500 " +
+    (errors[name] ? "border-red-500" : "border-zinc-700 hover:border-zinc-500");
 
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 bg-black text-white" id="contact">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" aria-labelledby="contact-heading" className="bg-black px-5 py-24 text-white sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="flex justify-center items-center gap-3 max-w-fit mx-auto mb-10 px-6 py-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-700/50 rounded-xl text-base text-zinc-300 font-medium shadow-md"
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ duration: reduceMotion ? 0 : 0.55, ease: "easeOut" }}
+          className="grid gap-3 rounded-[28px] border border-zinc-800 bg-[#0a0a0a] p-3 sm:p-4 lg:grid-cols-[0.9fr_1.1fr] lg:gap-5 lg:p-5"
         >
-          <span className="text-2xl">✉️</span>
-          Like what you see? Let&apos;s chat about your project!
-        </motion.div>
+          <div className="flex flex-col items-center justify-center px-4 py-14 text-center sm:px-8 lg:min-h-[520px] lg:py-12">
+            <span className="mb-7 rounded-full border border-zinc-700 px-4 py-1.5 text-xs font-medium tracking-widest text-zinc-400">
+              CONTACT
+            </span>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/50 rounded-3xl p-10 shadow-2xl"
-        >
-          <form ref={form} onSubmit={handleSubmit} className="space-y-8">
-            {/* Name + Email row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Name */}
-              <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
-                  Your Name
-                </label>
+            <h2
+              id="contact-heading"
+              className="max-w-lg text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl"
+            >
+              Have a project in mind<span className="text-red-500">?</span>
+            </h2>
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-zinc-400">
+              Whether it&apos;s a website, an application, or an idea worth exploring, let&apos;s talk.
+            </p>
+
+            <a
+              href={"mailto:" + EMAIL}
+              className="group mt-9 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/70 px-4 py-3 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:border-red-500/70 hover:bg-zinc-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+            >
+              <FiMail aria-hidden="true" className="text-red-500" />
+              Get in touch with Gmail
+              <FiArrowUpRight aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none" />
+            </a>
+            <p className="mt-3 break-all text-sm text-zinc-500">{EMAIL}</p>
+          </div>
+
+          <div className="rounded-[22px] border border-zinc-800 bg-[#121212] px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+            <h3 className="mb-8 text-2xl font-semibold tracking-tight text-white">
+              Send a message
+            </h3>
+
+            <form ref={form} onSubmit={handleSubmit} noValidate className="space-y-7">
+              <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
+                <label htmlFor="contact-website">Leave this field blank</label>
                 <input
+                  id="contact-website"
+                  name="website"
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-5 py-4 bg-zinc-900 border ${errors.name ? "border-red-500" : "border-zinc-800"
-                    } rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-all`}
-                  placeholder="John Doe"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(event) => setWebsite(event.target.value)}
                 />
-                {errors.name && (
-                  <p className="text-sm text-red-400 mt-2">{errors.name}</p>
-                )}
               </div>
 
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-medium text-zinc-400 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-5 py-4 bg-zinc-900 border ${errors.email ? "border-red-500" : "border-zinc-800"
-                    } rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-all`}
-                  placeholder="you@example.com"
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-400 mt-2">{errors.email}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block text-sm font-medium text-zinc-400 mb-2">
-                Your Message
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={6}
-                className={`w-full px-5 py-4 bg-zinc-900 border ${errors.message ? "border-red-500" : "border-zinc-800"
-                  } rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-all resize-none`}
-                placeholder="Tell me about your project..."
-              />
-              {errors.message && (
-                <p className="text-sm text-red-400 mt-2">{errors.message}</p>
-              )}
-            </div>
-
-            {/* Submit button */}
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              whileTap={{ scale: 0.98 }}
-              className={`w-full py-4 px-8 rounded-2xl font-medium text-lg flex items-center justify-center gap-3 transition-all ${isSubmitting
-                ? "bg-zinc-800 text-zinc-500 cursor-not-allowed"
-                : "bg-[#141414] border border-[#1f1f1f] text-white hover:border-[#2c2c2c] hover:bg-zinc-800/40"
-                }`}
-            >
-              {isSubmitting ? (
-                <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    />
-                  </svg>
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <FiSend className="text-xl" />
-                  Send Message
-                </>
-              )}
-            </motion.button>
-          </form>
-        </motion.div>
-
-        {/* Success modal */}
-        {isSuccess && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: "spring", damping: 15 }}
-              className="bg-zinc-900/95 backdrop-blur-xl border border-zinc-800/50 rounded-3xl p-10 max-w-md w-full text-center shadow-2xl"
-            >
-              <div className="mx-auto w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
-                <svg
-                  className="h-10 w-10 text-green-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
+              <div className="grid gap-7 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-zinc-300">Your name</label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="John Doe"
+                    value={formData.name}
+                    onChange={handleChange}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "contact-name-error" : undefined}
+                    className={fieldClass("name")}
                   />
-                </svg>
+                  {errors.name && <p id="contact-name-error" className="mt-2 text-sm text-red-400">{errors.name}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-zinc-300">Email address</label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "contact-email-error" : undefined}
+                    className={fieldClass("email")}
+                  />
+                  {errors.email && <p id="contact-email-error" className="mt-2 text-sm text-red-400">{errors.email}</p>}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
-              <p className="text-zinc-400 mb-8">
-                Thank you for reaching out. I&apos;ll get back to you soon.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsSuccess(false)}
-                className="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-2xl transition-all"
+
+              <div>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-zinc-300">Your message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows={5}
+                  placeholder="Tell me about your project..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "contact-message-error" : undefined}
+                  className={fieldClass("message") + " resize-y"}
+                />
+                {errors.message && <p id="contact-message-error" className="mt-2 text-sm text-red-400">{errors.message}</p>}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,transform] duration-200 hover:bg-red-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto motion-reduce:transform-none"
               >
-                Close
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        )}
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <span>Send message</span>
+                    <FiSend aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" />
+                  </>
+                )}
+              </button>
+
+              {feedback && (
+                <p
+                  role={feedback.type === "error" ? "alert" : "status"}
+                  aria-live="polite"
+                  className={feedback.type === "error" ? "text-sm text-red-400" : "text-sm text-green-400"}
+                >
+                  {feedback.text}
+                </p>
+              )}
+            </form>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
