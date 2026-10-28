@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import img1 from "./images/img1.png"; // BLINI Restaurant App
+import img1 from "./images/blini-preview.webp"; // BLINI Restaurant App
 import img2 from "./images/img2.jpg"; // TaskFlow Python Task Manager
 import img4 from "./images/img4.jpg"; // TechBit News Portal
 
